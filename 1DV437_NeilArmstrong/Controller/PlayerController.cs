@@ -65,7 +65,7 @@ namespace _1DV437_NeilArmstrong.Controller
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(playerShipTexture, camera.scaleVisualPosition(playerShip.GetShipPosition()),
+            spriteBatch.Draw(playerShipTexture, camera.scaleVisualPosition(playerShip.GetPosition()),
             null, Color.White, 0f, new Vector2(playerShipTexture.Bounds.Width / 2,
             playerShipTexture.Bounds.Height / 2), 0.25f, SpriteEffects.None, 0f);
             spriteBatch.End();

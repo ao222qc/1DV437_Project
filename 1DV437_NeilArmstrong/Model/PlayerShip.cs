@@ -6,10 +6,9 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Model
 {
-    class PlayerShip
+    class PlayerShip : Unit
     {
-        Vector2 position;
-        Vector2 speed;
+        Vector2 position;        
 
        /*       
         float damage;
@@ -20,20 +19,27 @@ namespace _1DV437_NeilArmstrong.Model
         public PlayerShip()
         {
             position = new Vector2(0.5f, 0.8f);
-            speed = new Vector2(0.8f, 1f);
+            speed = 0.8f;
+            fireRate = 0.0f;
+            hitPoints = 3;
         }
 
         public float GetShipSpeed()
         {
-            return speed.X;
+            return speed;
         }
 
-        public void Move(float totalSeconds, float direction)
+        public override void Kill()
         {
-            position.X += direction * speed.X * totalSeconds;
+            throw new NotImplementedException();
         }
 
-        public Vector2 GetShipPosition()
+        public override void Move(float totalSeconds, float direction)
+        {
+            position.X += direction * speed * totalSeconds;
+        }
+
+        public override Vector2 GetPosition()
         {
             return position;
         }
