@@ -1,0 +1,8 @@
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\obj\x86\Debug\1DV437_NeilArmstrong.csprojResolveAssemblyReference.cache
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\1DV437_NeilArmstrong.exe
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\1DV437_NeilArmstrong.pdb
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\MonoGame.Framework.dll
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\OpenTK.dll
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\obj\x86\Debug\1DV437_NeilArmstrong.exe
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\obj\x86\Debug\1DV437_NeilArmstrong.pdb
+c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spaceship.xnb
