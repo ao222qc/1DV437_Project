@@ -13,42 +13,61 @@ namespace _1DV437_NeilArmstrong.Controller
 {
     class GameController : Controller
     {
-        Texture2D gameWindow;
-        //Camera camera;
-        Rectangle gameScreen;
-
+        List<Controller> controllerList;
+        PlayerController playerController;
+        EnemyController enemyController;
+        GameView gameView;
+        ShipHandler shipHandler;
         PlayerShip playerShip;
-
-        //Abstract klass/interface som alla fiender/spelare ärver utav
-        //Foreach -> update && Draw
+        EnemyShip enemyShip;
+        Random rand;
 
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics)
         {
-            
-            gameWindow = new Texture2D(graphics, 1, 1);
-            gameWindow.SetData<Color>(new Color[]
-                {
-                    Color.White
-                }); 
-            this.camera = camera;
-            gameScreen = camera.GetGameWindow();
+            rand = new Random();
+            gameView = new GameView();
+            shipHandler = new ShipHandler();
             playerShip = new PlayerShip();
+            enemyShip = new EnemyShip(rand);
+            playerController = new PlayerController();
+            enemyController = new EnemyController();
+
+            controllerList = new List<Controller>();
+
+            controllerList.Add(playerController);
+            controllerList.Add(enemyController);
+
+            gameView.Initiate(content, camera, graphics);
+
+            shipHandler.AddObserver(gameView);
+            shipHandler.AddUnit(playerShip, 1);
+            shipHandler.AddUnit(enemyShip, 1);          
         }
 
         public override void Update(float totalSeconds)
         {
-          
+            foreach (Controller c in controllerList)
+            {
+                if (c is PlayerController)
+                {
+                    (c as PlayerController).Update(totalSeconds, playerShip);
+                    continue;
+                }
+                else if (c is EnemyController)
+                {
+                    (c as EnemyController).Update(totalSeconds, enemyShip);
+                }
+                 
+            }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             Vector2 vec = new Vector2(0.5f, 0.85f);
 
-              spriteBatch.Begin();
-              spriteBatch.Draw(gameWindow, gameScreen, Color.Black);
-
-              spriteBatch.End();
-
+            spriteBatch.Begin();
+            gameView.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace _1DV437_NeilArmstrong.Model
 {
     abstract class Unit
     {
+        protected Vector2 position;
         protected int hitPoints;
         protected float speed;
         protected float fireRate;
@@ -17,5 +19,8 @@ namespace _1DV437_NeilArmstrong.Model
         public abstract Vector2 GetPosition();
 
         public abstract void Kill();
+
+        public abstract void Shoot();
+
     }
 }

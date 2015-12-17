@@ -14,7 +14,7 @@ namespace _1DV437_NeilArmstrong
         [STAThread]
         static void Main()
         {
-            using (var game = new Controller.MasterController())
+            using (var game = new Controller.Game1())
                 game.Run();
         }
     }

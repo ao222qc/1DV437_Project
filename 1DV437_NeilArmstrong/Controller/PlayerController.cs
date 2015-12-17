@@ -13,20 +13,18 @@ namespace _1DV437_NeilArmstrong.Controller
 {
     class PlayerController : Controller
     {
-        Texture2D playerShipTexture;
-        PlayerShip playerShip;
         float playerMovementInput;
+        float rotation;
 
-
-        public PlayerController(ContentManager content, Camera camera, GraphicsDevice graphics)
-        {
-            playerShipTexture = content.Load<Texture2D>("spaceship");
-            playerShip = new PlayerShip();
-            this.camera = camera;            
+        public PlayerController()
+        {           
+            //this.camera = camera;            
         }
 
-        public override void Update(float totalSeconds)
+        public void Update(float totalSeconds, PlayerShip playerShip)
         {
+            
+            // Handles movement input from the keyboard
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 if (playerMovementInput > playerShip.GetShipSpeed() * -1)
@@ -59,16 +57,20 @@ namespace _1DV437_NeilArmstrong.Controller
                     playerMovementInput += 0.01f;
                 }
             }
-            playerShip.Move(totalSeconds, playerMovementInput);
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                playerShip.Shoot();
+            }
+
+             playerShip.Move(totalSeconds, playerMovementInput);
+             rotation = playerMovementInput/3;
+             playerShip.Rotation = rotation;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+
+        public override void Update(float totalSeconds)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(playerShipTexture, camera.scaleVisualPosition(playerShip.GetPosition()),
-            null, Color.White, 0f, new Vector2(playerShipTexture.Bounds.Width / 2,
-            playerShipTexture.Bounds.Height / 2), 0.25f, SpriteEffects.None, 0f);
-            spriteBatch.End();
+            
         }
     }
 }
