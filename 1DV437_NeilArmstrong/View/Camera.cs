@@ -32,5 +32,13 @@ namespace _1DV437_NeilArmstrong.View
 
             return new Vector2(visualX, visualY);
         }
+
+        public Vector2 scaleProjectilePosition(Vector2 logicalCoordinates)
+        {
+            float visualX = logicalCoordinates.X * scaleWidth + borderSize * 2;
+            float visualY = logicalCoordinates.Y * scaleHeight + borderSize * 2;
+
+            return new Vector2(visualX, visualY);
+        }
     }
 }

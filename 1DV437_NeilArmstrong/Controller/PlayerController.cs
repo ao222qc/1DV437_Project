@@ -11,20 +11,31 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Controller
 {
-    class PlayerController : Controller
+    class PlayerController : MasterController
     {
         float playerMovementInput;
         float rotation;
+        UnitHandler unitHandler;
+        List<Projectile> projectileList;
 
-        public PlayerController()
-        {           
-            //this.camera = camera;            
+        public PlayerController(UnitHandler unitHandler)
+        {
+            this.unitHandler = unitHandler;
+            projectileList = new List<Projectile>();
         }
+
+        /**
+         * Param 1: Total gametime passed in seconds
+         * Param 2: PlayerShip object
+         * Handles: Movement and shooting by keeping
+         *          track of projectiles in a list
+         *          Updates each Projectile created
+         *          by the PlayerShip             
+         **/
 
         public void Update(float totalSeconds, PlayerShip playerShip)
         {
             
-            // Handles movement input from the keyboard
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 if (playerMovementInput > playerShip.GetShipSpeed() * -1)
@@ -57,14 +68,23 @@ namespace _1DV437_NeilArmstrong.Controller
                     playerMovementInput += 0.01f;
                 }
             }
+
+            rotation = playerMovementInput / 3;
+            playerShip.Rotation = rotation;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                playerShip.Shoot();
+                projectileList.Add(new Projectile(playerShip.GetPosition(), playerShip.Rotation, this));
+                playerShip.Shoot(unitHandler, projectileList[projectileList.Count-1], totalSeconds);
             }
 
+            foreach (Projectile p in projectileList)
+            {
+                p.MoveProjectile(totalSeconds, 0f);
+            }
+             
              playerShip.Move(totalSeconds, playerMovementInput);
-             rotation = playerMovementInput/3;
-             playerShip.Rotation = rotation;
+            
         }
 
 

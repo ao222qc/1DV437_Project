@@ -12,9 +12,12 @@ namespace _1DV437_NeilArmstrong.View
     class GameView : Observer
     {
         List<Unit> myList;
-        Texture2D playerShip;
-        Texture2D enemyShip;
+        public Texture2D playerShip;
+        public float playerShipScale = 0.25f;
+        public Texture2D enemyShip;
+        public float enemyShipScale = 0.5f;
         Texture2D gameScreen;
+        public Texture2D basicProjectile;
         Camera camera;
 
         public GameView()
@@ -26,6 +29,7 @@ namespace _1DV437_NeilArmstrong.View
         {
             playerShip = content.Load<Texture2D>("spaceship");
             enemyShip = content.Load<Texture2D>("enemyspaceship");
+            basicProjectile = content.Load<Texture2D>("projectile");
             this.camera = camera;
             gameScreen = gameScreen = new Texture2D(graphics, 1, 1);
             gameScreen.SetData<Color>(new Color[]
@@ -52,13 +56,19 @@ namespace _1DV437_NeilArmstrong.View
                 {
                     spriteBatch.Draw(enemyShip, camera.scaleVisualPosition(unit.GetPosition()),
                     null, Color.White, 0f, new Vector2(enemyShip.Bounds.Width/2, enemyShip.Bounds.Height/2),
-                    0.5f, SpriteEffects.None, 0f);
+                    (unit as EnemyShip).Scale, SpriteEffects.None, 0f);
                 }
                 else if (unit is PlayerShip)
                 {
                     spriteBatch.Draw(playerShip, camera.scaleVisualPosition(unit.GetPosition()),
                     null, Color.White, (unit as PlayerShip).Rotation, new Vector2(playerShip.Bounds.Width / 2, playerShip.Bounds.Height / 2),
-                    0.25f, SpriteEffects.None, 0f);
+                    (unit as PlayerShip).Scale, SpriteEffects.None, 0f);
+                }
+                else if (unit is Projectile)
+                {
+                    spriteBatch.Draw(basicProjectile, camera.scaleProjectilePosition(unit.GetPosition()),
+                    null, Color.White, (unit as Projectile).Angle, new Vector2(playerShip.Bounds.Width/1.5f, playerShip.Bounds.Height/2),
+                    (unit as Projectile).Scale, SpriteEffects.None, 0f);
                 }
             }           
         }

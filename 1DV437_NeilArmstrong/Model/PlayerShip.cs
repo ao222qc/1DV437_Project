@@ -10,27 +10,50 @@ namespace _1DV437_NeilArmstrong.Model
     class PlayerShip : Unit
     {
         float rotation;
+        float timer;
+        float direction;
+        float scale = 0.25f;
+        float radius;
        
         public PlayerShip()
         {
-            position = new Vector2(0.5f, 0.8f);
+            radius = scale / 2;
+            position = new Vector2(0.5f, 0.9f);
             speed = 0.8f;
-            fireRate = 0.0f;
-            hitPoints = 3;
+            fireDelay = 0.3f;
+            hitPoints = 5;
         }
 
         public float GetShipSpeed()
         {
             return speed;
         }
+        public void Hit()
+        {
+            hitPoints -= 1;
+            if (hitPoints <= 0)
+            {
+                Kill();
+            }
+        }
+
+        public float Scale
+        {
+            get { return scale; }
+        }
+        public float Radius
+        {
+            get { return radius; }
+        }
 
         public override void Kill()
         {
-            throw new NotImplementedException();
+            speed = 0f ;
         }
 
         public override void Move(float totalSeconds, float direction)
         {
+            this.direction = direction;
             position.X += direction * speed * totalSeconds;
         }
 
@@ -45,11 +68,21 @@ namespace _1DV437_NeilArmstrong.Model
             return position;
         }
 
-        public override void Shoot()
+        public void Bounce()
         {
-            
+            position.Y = 0.2f;
         }
 
+        public void Shoot(UnitHandler unitHandler, Projectile p, float totalSeconds)
+        {
+            timer += totalSeconds;
+
+            if (timer >= fireDelay)
+            {
+                unitHandler.AddUnit(p, 1);
+                timer = 0;
+            }
+        }
 
     }
 }

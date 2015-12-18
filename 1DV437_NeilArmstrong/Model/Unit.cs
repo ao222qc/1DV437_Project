@@ -12,7 +12,7 @@ namespace _1DV437_NeilArmstrong.Model
         protected Vector2 position;
         protected int hitPoints;
         protected float speed;
-        protected float fireRate;
+        protected float fireDelay;
 
         public abstract void Move(float totalSeconds, float direction);
 
@@ -20,7 +20,6 @@ namespace _1DV437_NeilArmstrong.Model
 
         public abstract void Kill();
 
-        public abstract void Shoot();
 
     }
 }

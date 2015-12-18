@@ -6,17 +6,38 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Model
 {
-    abstract class UnitHandler
+    class UnitHandler : ObservableUnitHandler
     {
-        protected List<Unit> unitList = new List<Unit>();
+        public UnitHandler()
+        {
+            
+        }
 
-        protected List<Observer> observers = new List<Observer>();
+        /* *
+         * Param 1: Unit (abstract class) implemented by EnemyShip, PlayerShip, Projectile
+         * Param 2: Amount of units to add
+         * Handles: Adding Units at runtime
+         * */
+        public override void AddUnit(Unit unit, int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                unitList.Add(unit);
+            }           
+             NotifyObservers();
+        }
 
-        public abstract void AddUnit(Unit unit, int amount);
+        public override void AddObserver(Observer obs)
+        {
+            observers.Add(obs);
+        }
 
-        public abstract void NotifyObservers();
-
-        public abstract void AddObserver(Observer observer);
-
+        public override void NotifyObservers()
+        {
+            foreach (Observer obs in observers)
+            {
+                obs.UpdateList(unitList);
+            }
+        }
     }
 }

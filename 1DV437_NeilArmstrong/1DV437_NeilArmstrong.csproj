@@ -41,21 +41,23 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\MasterController.cs" />
     <Compile Include="Controller\EnemyController.cs" />
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Controller\PlayerController.cs" />
+    <Compile Include="Model\CollisionHandler.cs" />
     <Compile Include="Model\EnemyShip.cs" />
-    <Compile Include="Model\ShipHandler.cs" />
+    <Compile Include="Model\Projectile.cs" />
+    <Compile Include="Model\UnitHandler.cs" />
     <Compile Include="Model\PlayerShip.cs" />
     <Compile Include="Model\Unit.cs" />
-    <Compile Include="Model\UnitHandler.cs" />
+    <Compile Include="Model\ObservableUnitHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Camera.cs" />
     <Compile Include="View\GameView.cs" />
-    <Compile Include="View\Observer.cs" />
+    <Compile Include="Observer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -69,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\enemyspaceship.png" />
+    <Content Include="Content\projectile.png" />
     <Content Include="Content\spaceship.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>

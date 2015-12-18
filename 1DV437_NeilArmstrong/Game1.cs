@@ -52,6 +52,10 @@ namespace _1DV437_NeilArmstrong.Controller
 
             // TODO: load in controllers
             gameController = new GameController(Content, camera, graphics.GraphicsDevice);
+
+            //if something is true
+            int amountOfEnemies = 3;
+            gameController.InitiateGame(amountOfEnemies);
         }
 
         /// <summary>

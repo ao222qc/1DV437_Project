@@ -11,42 +11,56 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Controller
 {
-    class GameController : Controller
+    class GameController : MasterController
     {
-        List<Controller> controllerList;
+        List<EnemyShip> enemyShipList;
+        CollisionHandler collisionHandler;
+        List<MasterController> controllerList;
         PlayerController playerController;
         EnemyController enemyController;
         GameView gameView;
-        ShipHandler shipHandler;
+        UnitHandler unitHandler;
         PlayerShip playerShip;
-        EnemyShip enemyShip;
         Random rand;
 
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics)
         {
+            enemyShipList = new List<EnemyShip>();
             rand = new Random();
             gameView = new GameView();
-            shipHandler = new ShipHandler();
+            gameView.Initiate(content, camera, graphics);
+            unitHandler = new UnitHandler();
             playerShip = new PlayerShip();
-            enemyShip = new EnemyShip(rand);
-            playerController = new PlayerController();
-            enemyController = new EnemyController();
+            collisionHandler = new CollisionHandler(gameView);
+        }
 
-            controllerList = new List<Controller>();
+        public void InitiateGame(int amountOfEnemies)
+        {
+            for (int i = 0; i < amountOfEnemies; i++)
+            {
+                enemyShipList.Add(new EnemyShip(rand));
+            }
+
+            playerController = new PlayerController(unitHandler);
+            enemyController = new EnemyController(unitHandler);
+            controllerList = new List<MasterController>();
 
             controllerList.Add(playerController);
             controllerList.Add(enemyController);
 
-            gameView.Initiate(content, camera, graphics);
-
-            shipHandler.AddObserver(gameView);
-            shipHandler.AddUnit(playerShip, 1);
-            shipHandler.AddUnit(enemyShip, 1);          
+            unitHandler.AddObserver(gameView);
+            unitHandler.AddObserver(collisionHandler);
+            unitHandler.AddUnit(playerShip, 1);
+            foreach (EnemyShip es in enemyShipList)
+            {
+                unitHandler.AddUnit(es, 1);
+            }
         }
 
         public override void Update(float totalSeconds)
         {
-            foreach (Controller c in controllerList)
+            collisionHandler.Collision();
+            foreach (MasterController c in controllerList)
             {
                 if (c is PlayerController)
                 {
@@ -55,9 +69,12 @@ namespace _1DV437_NeilArmstrong.Controller
                 }
                 else if (c is EnemyController)
                 {
-                    (c as EnemyController).Update(totalSeconds, enemyShip);
+                    foreach (EnemyShip es in enemyShipList)
+                    {
+                        (c as EnemyController).Update(totalSeconds, es);
+                    }
                 }
-                 
+
             }
         }
 

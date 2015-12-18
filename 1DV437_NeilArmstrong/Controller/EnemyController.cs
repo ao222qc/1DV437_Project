@@ -10,22 +10,29 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Controller
 {
-    class EnemyController : Controller
+    class EnemyController : MasterController
     {
-        Texture2D enemyShipTexture;
-       
-       // EnemyShip enemyShip;
 
-        public EnemyController()
+        UnitHandler unitHandler;
+        List<Projectile> projectileList;
+
+        public EnemyController(UnitHandler unitHandler)
         {
-            //enemyShipTexture = content.Load<Texture2D>("enemyspaceship");
-            //enemyShip = new EnemyShip();
-            //shipHandler.AddUnit(enemyShip, 1);
-
-           // this.camera = camera;
+            projectileList = new List<Projectile>();
+            this.unitHandler = unitHandler;
         }
         public void Update(float totalSeconds, EnemyShip enemyShip)
         {
+            if (enemyShip.AbleToShoot(totalSeconds))
+            {
+                projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
+                enemyShip.Shoot(unitHandler, projectileList[projectileList.Count-1]);
+            }
+            foreach (Projectile p in projectileList)
+            {
+                p.MoveProjectile(totalSeconds, 0f);
+            }
+
             enemyShip.Move(totalSeconds, 0f);
         }
 
