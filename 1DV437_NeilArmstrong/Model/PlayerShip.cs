@@ -33,6 +33,7 @@ namespace _1DV437_NeilArmstrong.Model
             hitPoints -= 1;
             if (hitPoints <= 0)
             {
+                IsDead = true;
                 Kill();
             }
         }
@@ -63,6 +64,12 @@ namespace _1DV437_NeilArmstrong.Model
             set { rotation = value; }
         }
 
+        public bool IsDead
+        {
+            get { return this.isDead; }
+            set { this.isDead = value; }
+        }
+
         public override Vector2 GetPosition()
         {
             return position;
@@ -70,7 +77,7 @@ namespace _1DV437_NeilArmstrong.Model
 
         public void Bounce()
         {
-            position.Y = 0.2f;
+            Console.WriteLine("bounce bounce!");
         }
 
         public void Shoot(UnitHandler unitHandler, Projectile p, float totalSeconds)

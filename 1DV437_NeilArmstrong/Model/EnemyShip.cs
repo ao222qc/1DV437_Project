@@ -24,8 +24,16 @@ namespace _1DV437_NeilArmstrong.Model
             randomMovement = randomMovement * 0.25f;
             gravity = new Vector2(0f, 0.03f);
             hitPoints = 3;
-            fireDelay = 1.2f;
+            fireDelay = 1.4f;
         }
+
+        public bool IsDead
+        {
+            get { return this.isDead; }
+            set { this.isDead = value; }
+        }
+
+        
         public override void Move(float totalSeconds, float direction)
         {       
             position.X += randomMovement * totalSeconds;
@@ -73,6 +81,7 @@ namespace _1DV437_NeilArmstrong.Model
             if (this.hitPoints <= 0)
             {
                 this.Kill();
+                IsDead = true;
             }
         }
         public override void Kill()

@@ -13,13 +13,13 @@ namespace _1DV437_NeilArmstrong.Model
         protected int hitPoints;
         protected float speed;
         protected float fireDelay;
+        protected bool isDead;
 
         public abstract void Move(float totalSeconds, float direction);
 
         public abstract Vector2 GetPosition();
 
         public abstract void Kill();
-
 
     }
 }

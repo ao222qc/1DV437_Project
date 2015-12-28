@@ -1,12 +1,21 @@
-﻿using _1DV437_NeilArmstrong.View;
+﻿using _1DV437_NeilArmstrong.Controller;
+using _1DV437_NeilArmstrong.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace _1DV437_NeilArmstrong.Controller
+namespace _1DV437_NeilArmstrong
 {
+    public enum GameState
+    {
+        MenuScreen,
+        Game,
+        Paused
+    };
+
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -16,12 +25,19 @@ namespace _1DV437_NeilArmstrong.Controller
         SpriteBatch spriteBatch;
         Camera camera;
         GameController gameController;
+        MenuController menuController;
+        public GameState gameState;
+        bool pauseKeyDown;
+        bool pauseKeyDownThisFrame;
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameState = GameState.MenuScreen;
+            IsMouseVisible = true;
+            pauseKeyDown = false;
         }
 
         /// <summary>
@@ -50,12 +66,17 @@ namespace _1DV437_NeilArmstrong.Controller
             //controllerList = new List<Controller>();
             camera = new Camera(graphics.GraphicsDevice.Viewport);
 
-            // TODO: load in controllers
-            gameController = new GameController(Content, camera, graphics.GraphicsDevice);
+            GameView gameView = new GameView();
 
+            // TODO: load in controllers
+            gameController = new GameController(Content, camera, graphics.GraphicsDevice, gameView);
+            menuController = new MenuController(Content, camera, graphics.GraphicsDevice, gameView);
             //if something is true
-            int amountOfEnemies = 3;
-            gameController.InitiateGame(amountOfEnemies);
+            if (gameState == GameState.Game)
+            {
+                int amountOfEnemies = 3;
+                gameController.InitiateGame(amountOfEnemies);
+            }
         }
 
         /// <summary>
@@ -75,12 +96,41 @@ namespace _1DV437_NeilArmstrong.Controller
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+               Exit();
 
-            gameController.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
+            switch (gameState)
+            {
+                case GameState.MenuScreen:
+                    if (menuController.CheckIfUserWantsToPlay())
+                    {
+                        gameState = GameState.Game;
+                    }
+                    break;
+                case GameState.Game:
+                    pauseKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.P));
+                    if (!pauseKeyDown && pauseKeyDownThisFrame)
+                    {
+                        gameState = GameState.Paused;
+                    }
+                    pauseKeyDown = pauseKeyDownThisFrame;
+                    gameController.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    break;
+                case GameState.Paused:
+                    pauseKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.P));
+                    if (!pauseKeyDown && pauseKeyDownThisFrame)
+                    {
+                        gameState = GameState.Game;
+                    }
+                    pauseKeyDown = pauseKeyDownThisFrame;
+                    break;
+                default:
+                    break;
+            }
+                      
             base.Update(gameTime);
         }
+
+      
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -92,8 +142,21 @@ namespace _1DV437_NeilArmstrong.Controller
 
             // TODO: Add your drawing code here
 
-            gameController.Draw(spriteBatch);
-
+            switch (gameState)
+            {
+                case GameState.MenuScreen:
+                    menuController.Draw(spriteBatch);
+                    break;
+                case GameState.Game:
+                    gameController.Draw(spriteBatch);
+                    break;
+                case GameState.Paused:
+                    gameController.Draw(spriteBatch);
+                    break;
+                default:
+                    break;
+            }
+          
             base.Draw(gameTime);
         }
     }

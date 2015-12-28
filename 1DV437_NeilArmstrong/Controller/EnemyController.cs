@@ -23,17 +23,21 @@ namespace _1DV437_NeilArmstrong.Controller
         }
         public void Update(float totalSeconds, EnemyShip enemyShip)
         {
-            if (enemyShip.AbleToShoot(totalSeconds))
+            if (enemyShip.IsDead == false)
             {
-                projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
-                enemyShip.Shoot(unitHandler, projectileList[projectileList.Count-1]);
+                if (enemyShip.AbleToShoot(totalSeconds))
+                {
+                    projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
+                    enemyShip.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
+                }
             }
-            foreach (Projectile p in projectileList)
-            {
-                p.MoveProjectile(totalSeconds, 0f);
-            }
+                foreach (Projectile p in projectileList)
+                {
+                    p.MoveProjectile(totalSeconds, 0f);
+                }
 
-            enemyShip.Move(totalSeconds, 0f);
+                enemyShip.Move(totalSeconds, 0f);
+            
         }
 
         public override void Update(float totalSeconds)

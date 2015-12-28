@@ -8,6 +8,8 @@ namespace _1DV437_NeilArmstrong.Model
 {
     class UnitHandler : ObservableUnitHandler
     {
+
+        List<Unit> toRemove = new List<Unit>();
         public UnitHandler()
         {
             
@@ -25,6 +27,50 @@ namespace _1DV437_NeilArmstrong.Model
                 unitList.Add(unit);
             }           
              NotifyObservers();
+        }
+
+        public bool EnemiesDead()
+        {
+            int index = 0;
+            foreach (Unit unit in unitList)
+            {
+                if (unit is EnemyShip)
+                {
+                    index++;
+                }
+            }
+            if (index == 0)
+            {
+                ClearList();
+                return true;
+            }
+            return false;
+        }
+
+        public void ClearList()
+        {
+
+            unitList.Clear();
+            /*foreach (Unit unit in unitList)
+            {
+                if (unit is EnemyShip)
+                {
+                    toRemove.Add(unit as EnemyShip);
+                }
+                else if (unit is Projectile)
+                {
+                    toRemove.Add(unit as Projectile);
+                }               
+            }
+            unitList.RemoveAll(x => toRemove.Contains(x));*/
+            toRemove.Clear();
+        }
+
+        public void RemoveUnit(List<Unit> unitsToRemove)
+        {         
+            unitList.RemoveAll(x => unitsToRemove.Contains(x));
+
+            NotifyObservers();
         }
 
         public override void AddObserver(Observer obs)

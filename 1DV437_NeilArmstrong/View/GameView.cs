@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace _1DV437_NeilArmstrong.View
         Texture2D gameScreen;
         public Texture2D basicProjectile;
         Camera camera;
+        Texture2D background;
+        Texture2D menuBackground;
+        Texture2D playButton;
+        Vector2 playButtonLocation;
 
         public GameView()
         {
@@ -27,6 +32,10 @@ namespace _1DV437_NeilArmstrong.View
 
         public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics)
         {
+            playButtonLocation = new Vector2(0.5f, 0.5f);
+            playButton = content.Load<Texture2D>("playbutton");
+            menuBackground = content.Load<Texture2D>("spacebackgroundmenu");
+            background = content.Load<Texture2D>("spacebackground");
             playerShip = content.Load<Texture2D>("spaceship");
             enemyShip = content.Load<Texture2D>("enemyspaceship");
             basicProjectile = content.Load<Texture2D>("projectile");
@@ -46,10 +55,36 @@ namespace _1DV437_NeilArmstrong.View
             myList = unitList;
         }
 
+        public void DrawMenu(SpriteBatch spriteBatch)
+        {
+            
+            spriteBatch.Draw(menuBackground, camera.GetGameWindow(), Color.White);
+            spriteBatch.Draw(playButton, camera.scaleVisualPosition(playButtonLocation),
+                    null, Color.White, 0f, new Vector2(playButton.Bounds.Width/2, playButton.Bounds.Height/2),
+                    1f, SpriteEffects.None, 0f);           
+        }
+        public bool UserClicksPlay()
+        {
+            MouseState ms = Mouse.GetState();
+
+            if (ms.LeftButton == ButtonState.Pressed)
+            {
+                Vector2 mousePosition = new Vector2(ms.X, ms.Y);             
+                Vector2 visualPos = camera.scaleVisualPosition(playButtonLocation);
+               
+                if (mousePosition.X >= visualPos.X - playButton.Bounds.Width / 2 && mousePosition.X <= visualPos.X + playButton.Bounds.Width / 2
+                    && mousePosition.Y >= visualPos.Y - playButton.Bounds.Height / 2 && mousePosition.Y <= visualPos.Y + playButton.Bounds.Height / 2)
+                {
+                    Console.WriteLine("träff");
+                    return true;
+                }
+            }
+            return false;           
+        }
         public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(gameScreen, camera.GetGameWindow(), Color.Black);
-
+            spriteBatch.Draw(background, camera.GetGameWindow(), Color.White);
+    
             foreach(Unit unit in myList)
             {
                 if (unit is EnemyShip)

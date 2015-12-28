@@ -44,6 +44,7 @@
     <Compile Include="Controller\MasterController.cs" />
     <Compile Include="Controller\EnemyController.cs" />
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\MenuController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Controller\PlayerController.cs" />
     <Compile Include="Model\CollisionHandler.cs" />
@@ -71,7 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\enemyspaceship.png" />
+    <Content Include="Content\playbutton.png" />
     <Content Include="Content\projectile.png" />
+    <Content Include="Content\spacebackground.png" />
+    <Content Include="Content\spacebackgroundmenu.png" />
     <Content Include="Content\spaceship.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>

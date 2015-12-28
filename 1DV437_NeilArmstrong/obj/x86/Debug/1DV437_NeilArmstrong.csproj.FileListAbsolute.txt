@@ -8,3 +8,6 @@ c:\users\adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\enemyspaceship.xnb
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\projectile.xnb
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spaceship.xnb
+C:\Users\Adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spacebackground.xnb
+C:\Users\Adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spacebackgroundmenu.xnb
+C:\Users\Adam\documents\visual studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\playbutton.xnb

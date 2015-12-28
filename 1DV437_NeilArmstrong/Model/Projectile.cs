@@ -63,17 +63,17 @@ namespace _1DV437_NeilArmstrong.Model
 
         public void MoveProjectile(float totalSeconds, float direction )
         {
-
             if (this.projectileType == Model.ProjectileType.Player)
             {
                 position.Y += projectileSpeed * totalSeconds;
             }
             else if (this.projectileType == Model.ProjectileType.Enemy)
             {
+                projectileSpeed = -0.2f;
                 position.Y -= projectileSpeed * totalSeconds;
             }
+
             direction = angle;
-           // position.Y += projectileSpeed * totalSeconds;
             position.X += direction * totalSeconds;          
         }
 

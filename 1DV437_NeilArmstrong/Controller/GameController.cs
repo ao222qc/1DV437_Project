@@ -22,24 +22,18 @@ namespace _1DV437_NeilArmstrong.Controller
         UnitHandler unitHandler;
         PlayerShip playerShip;
         Random rand;
+        int amountOfEnemies;
 
-        public GameController(ContentManager content, Camera camera, GraphicsDevice graphics)
+        public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView)
         {
             enemyShipList = new List<EnemyShip>();
             rand = new Random();
-            gameView = new GameView();
+            this.gameView = gameView;
             gameView.Initiate(content, camera, graphics);
             unitHandler = new UnitHandler();
             playerShip = new PlayerShip();
-            collisionHandler = new CollisionHandler(gameView);
-        }
-
-        public void InitiateGame(int amountOfEnemies)
-        {
-            for (int i = 0; i < amountOfEnemies; i++)
-            {
-                enemyShipList.Add(new EnemyShip(rand));
-            }
+            collisionHandler = new CollisionHandler(gameView, unitHandler);
+            amountOfEnemies = 3;
 
             playerController = new PlayerController(unitHandler);
             enemyController = new EnemyController(unitHandler);
@@ -50,7 +44,18 @@ namespace _1DV437_NeilArmstrong.Controller
 
             unitHandler.AddObserver(gameView);
             unitHandler.AddObserver(collisionHandler);
+
+        }
+
+        public void InitiateGame(int amountOfEnemies)
+        {
             unitHandler.AddUnit(playerShip, 1);
+            enemyShipList.Clear();
+            for (int i = 0; i < amountOfEnemies; i++)
+            {
+                enemyShipList.Add(new EnemyShip(rand));
+            }
+
             foreach (EnemyShip es in enemyShipList)
             {
                 unitHandler.AddUnit(es, 1);
@@ -65,6 +70,7 @@ namespace _1DV437_NeilArmstrong.Controller
                 if (c is PlayerController)
                 {
                     (c as PlayerController).Update(totalSeconds, playerShip);
+
                     continue;
                 }
                 else if (c is EnemyController)
@@ -72,6 +78,11 @@ namespace _1DV437_NeilArmstrong.Controller
                     foreach (EnemyShip es in enemyShipList)
                     {
                         (c as EnemyController).Update(totalSeconds, es);
+                    }
+                    if (unitHandler.EnemiesDead())
+                    {
+                        amountOfEnemies += 1;
+                        InitiateGame(amountOfEnemies);
                     }
                 }
 

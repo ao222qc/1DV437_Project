@@ -8,15 +8,18 @@ namespace _1DV437_NeilArmstrong.Model
 {
     class CollisionHandler : Observer
     {
+        List<Unit> toRemove = new List<Unit>();
         List<Unit> unitList = new List<Unit>();
         List<EnemyShip> enemyList = new List<EnemyShip>();
         List<Projectile> projectileList = new List<Projectile>();
         List<PlayerShip> playerShipList = new List<PlayerShip>();
         GameView gameView;
+        UnitHandler unitHandler;
 
-        public CollisionHandler(GameView gameView)
+        public CollisionHandler(GameView gameView, UnitHandler unitHandler)
         {
             this.gameView = gameView;
+            this.unitHandler = unitHandler;
         }
 
         public override void UpdateList(List<Unit> unitList)
@@ -53,6 +56,16 @@ namespace _1DV437_NeilArmstrong.Model
                     ProjectileHitCollision((unit as Projectile));
                 }
             }
+            RemoveUnits();
+        }
+
+        public void RemoveUnits()
+        {
+            enemyList.RemoveAll(x => toRemove.Contains(x));
+            playerShipList.RemoveAll(x => toRemove.Contains(x));
+            projectileList.RemoveAll(x => toRemove.Contains(x));
+            unitHandler.RemoveUnit(toRemove);
+            toRemove.Clear();
         }
 
 
@@ -81,37 +94,36 @@ namespace _1DV437_NeilArmstrong.Model
                     {
                         Console.WriteLine("Enemy hit!");
                         enemy.Hit();
-                        projectile.Kill();
+                        if (enemy.IsDead)
+                        {
+                            toRemove.Add(enemy);
+                        }
+                        toRemove.Add(projectile);
                         break;
                     }
                 }
             }
             else if (projectile.ProjectileType == Model.ProjectileType.Enemy)
-            {              
+            {
                 foreach (PlayerShip player in playerShipList)
-                {                   
+                {
                     float playerPosX = player.GetPosition().X;
                     float playerPosY = player.GetPosition().Y;
 
-                    if(pPositionX - projectile.Radius >= playerPosX - player.Radius && pPositionX + projectile.Radius <= playerPosX + player.Radius
-                        && pPositionY >= playerPosY - player.Radius && pPositionY <= playerPosY + player.Radius)                 
+                    if (pPositionX - projectile.Radius >= playerPosX - player.Radius && pPositionX + projectile.Radius <= playerPosX + player.Radius
+                        && pPositionY >= playerPosY - player.Radius && pPositionY <= playerPosY + player.Radius)
                     {
-                        projectile.Kill();
+                        toRemove.Add(projectile);
                         player.Hit();
+                        if (player.IsDead)
+                        {
+                            toRemove.Add(player);
+                        }
                         Console.WriteLine("Player hit!");
                         break;
                     }
-                    
-
-
                 }
-                
-
-                
             }
-            
-          
-
         }
     }
 }
