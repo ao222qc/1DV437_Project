@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace _1DV437_NeilArmstrong.Controller
 {
@@ -45,7 +46,7 @@ namespace _1DV437_NeilArmstrong.Controller
             unitHandler = new UnitHandler();
             playerShip = new PlayerShip();
             collisionHandler = new CollisionHandler(gameView, unitHandler);
-            amountOfEnemies = 3;
+            amountOfEnemies = 1;
 
             playerController = new PlayerController(unitHandler);
             enemyController = new EnemyController(unitHandler);
@@ -55,14 +56,17 @@ namespace _1DV437_NeilArmstrong.Controller
             controllerList.Add(enemyController);
 
             unitHandler.AddObserver(gameView);
-            unitHandler.AddObserver(collisionHandler);           
+            unitHandler.AddObserver(collisionHandler);
+
+           // InitiateEnemyWave(1);
         }
 
-        public void InitiateEnemyWave(int amountOfEnemies)
+        public void InitiateEnemyWave(int amount)
         {
+            Sleep();
             unitHandler.AddUnit(playerShip, 1);
             enemyShipList.Clear();
-            for (int i = 1; i < amountOfEnemies; i++)
+            for (int i = 1; i < amount; i++)
             {
                 enemyShipList.Add(new EnemyShip(rand));
             }
@@ -81,7 +85,6 @@ namespace _1DV437_NeilArmstrong.Controller
                 if (c is PlayerController)
                 {
                     (c as PlayerController).Update(totalSeconds, playerShip);
-
                     continue;
                 }
                 else if (c is EnemyController)
@@ -94,23 +97,36 @@ namespace _1DV437_NeilArmstrong.Controller
                     {
                         (c as EnemyController).UpdateBoss(totalSeconds, b);
                     }
+
+                    if (wave == 4 && gameState != GameState.Bossfight)
+                    {
+                        wave = 0;
+                        gameState = GameState.Bossfight;
+                        InitiateEnemyBoss();
+                    }       
                     if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
                     {
                         wave += 1;
                         amountOfEnemies += 1;
                         InitiateEnemyWave(amountOfEnemies);
                     }
-                    if (wave == 2 && gameState != GameState.Bossfight)
-                    {
-                        gameState = GameState.Bossfight;
-                        InitiateEnemyBoss();
-                    }
+                                
                 }
             }
         }
 
+        public void Sleep()
+        {
+            Thread.Sleep(1);
+        }
+
         public void InitiateEnemyBoss()
-        {           
+        {
+            unitHandler.ClearList();
+            Sleep();
+            enemyShipList.Clear();
+            
+            unitHandler.AddUnit(playerShip, 1);
 
             bossList.Add(new Boss(rand));
 
@@ -118,7 +134,7 @@ namespace _1DV437_NeilArmstrong.Controller
             {
                 unitHandler.AddUnit(b, 1);
             }
-            enemyShipList.Clear();
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

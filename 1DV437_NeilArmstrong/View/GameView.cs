@@ -77,7 +77,7 @@ namespace _1DV437_NeilArmstrong.View
                 if (mousePosition.X >= visualPos.X - playButton.Bounds.Width / 2 && mousePosition.X <= visualPos.X + playButton.Bounds.Width / 2
                     && mousePosition.Y >= visualPos.Y - playButton.Bounds.Height / 2 && mousePosition.Y <= visualPos.Y + playButton.Bounds.Height / 2)
                 {
-                    Console.WriteLine("träff");
+                    
                     return true;
                 }
             }

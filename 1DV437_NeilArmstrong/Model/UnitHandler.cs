@@ -32,16 +32,20 @@ namespace _1DV437_NeilArmstrong.Model
         public bool EnemiesDead()
         {
             int index = 0;
+            int playerIndex = 0;
             foreach (Unit unit in unitList)
             {
                 if (unit is EnemyShip)
                 {
                     index++;
                 }
+                else if (unit is PlayerShip)
+                {
+                    playerIndex++;
+                }
             }
             if (index == 0)
-            {
-                ClearList();
+            {                            
                 return true;
             }
             return false;
@@ -49,7 +53,6 @@ namespace _1DV437_NeilArmstrong.Model
 
         public void ClearList()
         {
-
             unitList.Clear();
             /*foreach (Unit unit in unitList)
             {
@@ -64,6 +67,8 @@ namespace _1DV437_NeilArmstrong.Model
             }
             unitList.RemoveAll(x => toRemove.Contains(x));*/
             toRemove.Clear();
+
+            NotifyObservers();
         }
 
         public void RemoveUnit(List<Unit> unitsToRemove)
@@ -84,6 +89,8 @@ namespace _1DV437_NeilArmstrong.Model
             {
                 obs.UpdateList(unitList);
             }
+
+           
         }
     }
 }

@@ -77,7 +77,7 @@ namespace _1DV437_NeilArmstrong.Model
 
         public void Bounce()
         {
-            Console.WriteLine("bounce bounce!");
+            
         }
 
         public void Shoot(UnitHandler unitHandler, Projectile p, float totalSeconds)

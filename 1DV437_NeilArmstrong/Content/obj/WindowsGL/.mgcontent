@@ -4,12 +4,12 @@
   <Platform>WindowsGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spaceship.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/projectile.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/enemyspaceship.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spacebackground.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spacebackgroundmenu.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/playbutton.png</File>
-    <File>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/bosship.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spaceship.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/projectile.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/enemyspaceship.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spacebackground.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/spacebackgroundmenu.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/playbutton.png</File>
+    <File>C:/Users/Adam/documents/visual studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/bosship.png</File>
   </SourceFiles>
 </SourceFileCollection>

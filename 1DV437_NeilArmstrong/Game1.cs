@@ -75,8 +75,8 @@ namespace _1DV437_NeilArmstrong
             //if something is true
             if (gameState == GameState.Game)
             {
-                int amountOfEnemies = 3;
-                gameController.InitiateEnemyWave(amountOfEnemies);
+                //int amountOfEnemies = 3;
+                //gameController.InitiateEnemyWave(amountOfEnemies);
             }
         }
 

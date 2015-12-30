@@ -69,6 +69,7 @@ namespace _1DV437_NeilArmstrong.Model
             enemyList.RemoveAll(x => toRemove.Contains(x));
             playerShipList.RemoveAll(x => toRemove.Contains(x));
             projectileList.RemoveAll(x => toRemove.Contains(x));
+            bossList.RemoveAll(x => toRemove.Contains(x));
             unitHandler.RemoveUnit(toRemove);
             toRemove.Clear();
         }
@@ -97,7 +98,7 @@ namespace _1DV437_NeilArmstrong.Model
                     if (pPositionX - projectile.Radius >= enemyPosX - enemy.Radius && pPositionX + projectile.Radius <= enemyPosX + enemy.Radius
                         && pPositionY - projectile.Radius >= enemyPosY - enemy.Radius && pPositionY + projectile.Radius <= enemyPosY + enemy.Radius)
                     {
-                        Console.WriteLine("Enemy hit!");
+                        
                         enemy.Hit();
                         if (enemy.IsDead)
                         {
@@ -116,7 +117,7 @@ namespace _1DV437_NeilArmstrong.Model
                     if (pPositionX - projectile.Radius >= bossPosX - boss.Radius && pPositionX + projectile.Radius <= bossPosX + boss.Radius
                         && pPositionY - projectile.Radius >= bossPosY - boss.Radius && pPositionY + projectile.Radius <= bossPosY + boss.Radius)
                     {
-                        Console.WriteLine("boss hit");
+                        
                         boss.Hit();
                         if (boss.IsDead)
                         {
@@ -143,7 +144,7 @@ namespace _1DV437_NeilArmstrong.Model
                         {
                             toRemove.Add(player);
                         }
-                        Console.WriteLine("Player hit!");
+                        
                         break;
                     }
                 }
