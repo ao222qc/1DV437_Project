@@ -47,6 +47,7 @@
     <Compile Include="Controller\MenuController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Controller\PlayerController.cs" />
+    <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\CollisionHandler.cs" />
     <Compile Include="Model\EnemyShip.cs" />
     <Compile Include="Model\Projectile.cs" />
@@ -71,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bosship.png" />
     <Content Include="Content\enemyspaceship.png" />
     <Content Include="Content\playbutton.png" />
     <Content Include="Content\projectile.png" />

@@ -13,6 +13,7 @@ namespace _1DV437_NeilArmstrong.Model
         List<EnemyShip> enemyList = new List<EnemyShip>();
         List<Projectile> projectileList = new List<Projectile>();
         List<PlayerShip> playerShipList = new List<PlayerShip>();
+        List<Boss> bossList = new List<Boss>();
         GameView gameView;
         UnitHandler unitHandler;
 
@@ -39,6 +40,10 @@ namespace _1DV437_NeilArmstrong.Model
                 else if (unit is PlayerShip)
                 {
                     playerShipList.Add(unit as PlayerShip);
+                }
+                else if (unit is Boss)
+                {
+                    bossList.Add(unit as Boss);
                 }
             }
         }
@@ -102,6 +107,25 @@ namespace _1DV437_NeilArmstrong.Model
                         break;
                     }
                 }
+
+                foreach (Boss boss in bossList)
+                {
+                    float bossPosX = boss.GetPosition().X;
+                    float bossPosY = boss.GetPosition().Y;
+
+                    if (pPositionX - projectile.Radius >= bossPosX - boss.Radius && pPositionX + projectile.Radius <= bossPosX + boss.Radius
+                        && pPositionY - projectile.Radius >= bossPosY - boss.Radius && pPositionY + projectile.Radius <= bossPosY + boss.Radius)
+                    {
+                        Console.WriteLine("boss hit");
+                        boss.Hit();
+                        if (boss.IsDead)
+                        {
+                            toRemove.Add(boss);
+                        }
+                        toRemove.Add(projectile);
+                        break;
+                    }
+                }
             }
             else if (projectile.ProjectileType == Model.ProjectileType.Enemy)
             {
@@ -124,6 +148,7 @@ namespace _1DV437_NeilArmstrong.Model
                     }
                 }
             }
+            
         }
     }
 }

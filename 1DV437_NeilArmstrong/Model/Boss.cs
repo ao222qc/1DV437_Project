@@ -6,52 +6,43 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Model
 {
-    class EnemyShip : Unit
+    class Boss : Unit
     {
         Vector2 gravity;
         Random rand;
         float time;
         float scale = 0.3f;
         float radius;
-        float randomMovement;
+        float movement;
 
-        public EnemyShip(Random rand)
+        public Boss(Random rand)
         {
+            IsDead = false;
             radius = scale / 2;
             this.rand = rand;
             position = new Vector2(0.5f, 0.1f);
-            randomMovement = (float)rand.NextDouble() - 0.5f;
-            randomMovement = randomMovement * 0.25f;
-            gravity = new Vector2(0f, 0.03f);
-            hitPoints = 3;
-            fireDelay = 1.4f;
+            movement = 0.2f;
+            gravity = new Vector2(0f, 0.02f);
+            hitPoints = 10;
+            fireDelay = 0.8f;
         }
-
-        public bool IsDead
-        {
-            get { return this.isDead; }
-            set { this.isDead = value; }
-        }
-
-
         public override void Move(float totalSeconds, float direction)
         {
-            position.X += randomMovement * totalSeconds;
-            if (position.X > 0.95f || position.X < 0.05f)
+            position.X += movement * totalSeconds;
+            if (position.X > 0.9f || position.X < 0.1f)
             {
-                randomMovement = -randomMovement;
+                movement = -movement;
             }
             position.Y += gravity.Y * totalSeconds;
+        }
+        public float Radius
+        {
+            get { return radius; }
         }
 
         public float Scale
         {
             get { return scale; }
-        }
-
-        public float Radius
-        {
-            get { return radius; }
         }
 
         public bool AbleToShoot(float totalSeconds)
@@ -84,11 +75,17 @@ namespace _1DV437_NeilArmstrong.Model
                 IsDead = true;
             }
         }
+
+        public bool IsDead
+        {
+            get { return this.isDead; }
+            set { this.isDead = value; }
+        }
+
         public override void Kill()
         {
             gravity.Y = 0f;
-            randomMovement = 0;
-
+            movement = 0;
         }
     }
 }

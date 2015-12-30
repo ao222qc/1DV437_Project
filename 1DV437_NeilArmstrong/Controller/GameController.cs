@@ -11,9 +11,18 @@ using System.Text;
 
 namespace _1DV437_NeilArmstrong.Controller
 {
+    public enum GameState
+    {
+        EnemyWave,
+        Bossfight
+    }
+
+
     class GameController : MasterController
     {
+        GameState gameState;
         List<EnemyShip> enemyShipList;
+        List<Boss> bossList;
         CollisionHandler collisionHandler;
         List<MasterController> controllerList;
         PlayerController playerController;
@@ -23,9 +32,12 @@ namespace _1DV437_NeilArmstrong.Controller
         PlayerShip playerShip;
         Random rand;
         int amountOfEnemies;
+        int wave = 0;
 
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView)
         {
+            gameState = GameState.EnemyWave;
+            bossList = new List<Boss>();
             enemyShipList = new List<EnemyShip>();
             rand = new Random();
             this.gameView = gameView;
@@ -43,15 +55,14 @@ namespace _1DV437_NeilArmstrong.Controller
             controllerList.Add(enemyController);
 
             unitHandler.AddObserver(gameView);
-            unitHandler.AddObserver(collisionHandler);
-
+            unitHandler.AddObserver(collisionHandler);           
         }
 
-        public void InitiateGame(int amountOfEnemies)
+        public void InitiateEnemyWave(int amountOfEnemies)
         {
             unitHandler.AddUnit(playerShip, 1);
             enemyShipList.Clear();
-            for (int i = 0; i < amountOfEnemies; i++)
+            for (int i = 1; i < amountOfEnemies; i++)
             {
                 enemyShipList.Add(new EnemyShip(rand));
             }
@@ -79,14 +90,35 @@ namespace _1DV437_NeilArmstrong.Controller
                     {
                         (c as EnemyController).Update(totalSeconds, es);
                     }
-                    if (unitHandler.EnemiesDead())
+                    foreach (Boss b in bossList)
                     {
+                        (c as EnemyController).UpdateBoss(totalSeconds, b);
+                    }
+                    if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
+                    {
+                        wave += 1;
                         amountOfEnemies += 1;
-                        InitiateGame(amountOfEnemies);
+                        InitiateEnemyWave(amountOfEnemies);
+                    }
+                    if (wave == 2 && gameState != GameState.Bossfight)
+                    {
+                        gameState = GameState.Bossfight;
+                        InitiateEnemyBoss();
                     }
                 }
-
             }
+        }
+
+        public void InitiateEnemyBoss()
+        {           
+
+            bossList.Add(new Boss(rand));
+
+            foreach (Boss b in bossList)
+            {
+                unitHandler.AddUnit(b, 1);
+            }
+            enemyShipList.Clear();
         }
 
         public void Draw(SpriteBatch spriteBatch)

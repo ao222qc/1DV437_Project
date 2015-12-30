@@ -36,8 +36,25 @@ namespace _1DV437_NeilArmstrong.Controller
                     p.MoveProjectile(totalSeconds, 0f);
                 }
 
-                enemyShip.Move(totalSeconds, 0f);
-            
+                enemyShip.Move(totalSeconds, 0f);           
+        }
+
+        public void UpdateBoss(float totalSeconds, Boss boss)
+        {
+            if(boss.IsDead == false)
+            {
+                if (boss.AbleToShoot(totalSeconds))
+                {
+                    projectileList.Add(new Projectile(boss.GetPosition(), 0f, this));
+                    boss.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
+                }
+            }
+            foreach (Projectile p in projectileList)
+            {
+                p.MoveProjectile(totalSeconds, 0f);
+            }
+
+            boss.Move(totalSeconds, 0f);
         }
 
         public override void Update(float totalSeconds)

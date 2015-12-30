@@ -18,6 +18,7 @@ namespace _1DV437_NeilArmstrong.View
         public Texture2D enemyShip;
         public float enemyShipScale = 0.5f;
         Texture2D gameScreen;
+        Texture2D boss;
         public Texture2D basicProjectile;
         Camera camera;
         Texture2D background;
@@ -32,6 +33,7 @@ namespace _1DV437_NeilArmstrong.View
 
         public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics)
         {
+            boss = content.Load<Texture2D>("bosship");
             playButtonLocation = new Vector2(0.5f, 0.5f);
             playButton = content.Load<Texture2D>("playbutton");
             menuBackground = content.Load<Texture2D>("spacebackgroundmenu");
@@ -104,6 +106,12 @@ namespace _1DV437_NeilArmstrong.View
                     spriteBatch.Draw(basicProjectile, camera.scaleProjectilePosition(unit.GetPosition()),
                     null, Color.White, (unit as Projectile).Angle, new Vector2(playerShip.Bounds.Width/1.5f, playerShip.Bounds.Height/2),
                     (unit as Projectile).Scale, SpriteEffects.None, 0f);
+                }
+                else if (unit is Boss)
+                {
+                    spriteBatch.Draw(boss, camera.scaleVisualPosition(unit.GetPosition()),
+                    null, Color.White, 3.1f, new Vector2(boss.Bounds.Width / 2, boss.Bounds.Height / 2),
+                    (unit as Boss).Scale, SpriteEffects.None, 0f);
                 }
             }           
         }

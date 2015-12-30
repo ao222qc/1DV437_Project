@@ -71,11 +71,12 @@ namespace _1DV437_NeilArmstrong
             // TODO: load in controllers
             gameController = new GameController(Content, camera, graphics.GraphicsDevice, gameView);
             menuController = new MenuController(Content, camera, graphics.GraphicsDevice, gameView);
+
             //if something is true
             if (gameState == GameState.Game)
             {
                 int amountOfEnemies = 3;
-                gameController.InitiateGame(amountOfEnemies);
+                gameController.InitiateEnemyWave(amountOfEnemies);
             }
         }
 
