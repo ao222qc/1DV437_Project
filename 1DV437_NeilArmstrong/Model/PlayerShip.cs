@@ -10,11 +10,12 @@ namespace _1DV437_NeilArmstrong.Model
     class PlayerShip : Unit
     {
         float rotation;
-        float timer;
         float direction;
         float scale = 0.25f;
         float radius;
-       
+        float time;
+        bool playerGotHit;
+
         public PlayerShip()
         {
             radius = scale / 2;
@@ -31,11 +32,22 @@ namespace _1DV437_NeilArmstrong.Model
         public void Hit()
         {
             hitPoints -= 1;
+            playerGotHit = true;
             if (hitPoints <= 0)
             {
                 IsDead = true;
                 Kill();
             }
+        }
+
+        public bool PlayerGotHit()
+        {
+            if (playerGotHit)
+            {
+                playerGotHit = false;
+                return true;
+            }
+            return false;
         }
 
         public float Scale
@@ -49,7 +61,7 @@ namespace _1DV437_NeilArmstrong.Model
 
         public override void Kill()
         {
-            speed = 0f ;
+            speed = 0f;
         }
 
         public override void Move(float totalSeconds, float direction)
@@ -75,20 +87,25 @@ namespace _1DV437_NeilArmstrong.Model
             return position;
         }
 
+        public bool AbleToShoot(float totalSeconds)
+        {
+            time += totalSeconds;
+            if (time >= fireDelay)
+            {
+                time = 0;
+                return true;
+            }
+            return false;
+        }
+
         public void Bounce()
         {
-            
+
         }
 
         public void Shoot(UnitHandler unitHandler, Projectile p, float totalSeconds)
         {
-            timer += totalSeconds;
-
-            if (timer >= fireDelay)
-            {
-                unitHandler.AddUnit(p, 1);
-                timer = 0;
-            }
+            unitHandler.AddUnit(p, 1);
         }
 
     }

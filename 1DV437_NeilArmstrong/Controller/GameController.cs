@@ -21,6 +21,7 @@ namespace _1DV437_NeilArmstrong.Controller
 
     class GameController : MasterController
     {
+        ExplosionAnimationHandler explosionHandler;
         GameState gameState;
         List<EnemyShip> enemyShipList;
         List<Boss> bossList;
@@ -37,6 +38,7 @@ namespace _1DV437_NeilArmstrong.Controller
 
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView)
         {
+            explosionHandler = new ExplosionAnimationHandler();
             gameState = GameState.EnemyWave;
             bossList = new List<Boss>();
             enemyShipList = new List<EnemyShip>();
@@ -48,8 +50,8 @@ namespace _1DV437_NeilArmstrong.Controller
             collisionHandler = new CollisionHandler(gameView, unitHandler);
             amountOfEnemies = 1;
 
-            playerController = new PlayerController(unitHandler);
-            enemyController = new EnemyController(unitHandler);
+            playerController = new PlayerController(unitHandler, gameView);
+            enemyController = new EnemyController(unitHandler, gameView);
             controllerList = new List<MasterController>();
 
             controllerList.Add(playerController);
@@ -57,8 +59,6 @@ namespace _1DV437_NeilArmstrong.Controller
 
             unitHandler.AddObserver(gameView);
             unitHandler.AddObserver(collisionHandler);
-
-           // InitiateEnemyWave(1);
         }
 
         public void InitiateEnemyWave(int amount)
@@ -79,6 +79,7 @@ namespace _1DV437_NeilArmstrong.Controller
 
         public override void Update(float totalSeconds)
         {
+            explosionHandler.Update(totalSeconds);
             collisionHandler.Collision();
             foreach (MasterController c in controllerList)
             {

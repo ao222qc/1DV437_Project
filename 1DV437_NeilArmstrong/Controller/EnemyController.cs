@@ -15,11 +15,13 @@ namespace _1DV437_NeilArmstrong.Controller
 
         UnitHandler unitHandler;
         List<Projectile> projectileList;
+        GameView gameView;
 
-        public EnemyController(UnitHandler unitHandler)
+        public EnemyController(UnitHandler unitHandler, GameView gameView)
         {
             projectileList = new List<Projectile>();
             this.unitHandler = unitHandler;
+            this.gameView = gameView;
         }
         public void Update(float totalSeconds, EnemyShip enemyShip)
         {
@@ -29,6 +31,7 @@ namespace _1DV437_NeilArmstrong.Controller
                 {
                     projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
                     enemyShip.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
+                    gameView.PlayEnemyFireSound();
                 }
             }
                 foreach (Projectile p in projectileList)

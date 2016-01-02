@@ -14,6 +14,7 @@ namespace _1DV437_NeilArmstrong.Model
         float scale = 0.3f;
         float radius;
         float randomMovement;
+        int enemyShootingDelay;
 
         public EnemyShip(Random rand)
         {
@@ -57,6 +58,8 @@ namespace _1DV437_NeilArmstrong.Model
         public bool AbleToShoot(float totalSeconds)
         {
             time += totalSeconds;
+
+            fireDelay = (float)rand.NextDouble()  +1.2f;
 
             if (time >= fireDelay)
             {

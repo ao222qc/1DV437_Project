@@ -17,11 +17,13 @@ namespace _1DV437_NeilArmstrong.Controller
         float rotation;
         UnitHandler unitHandler;
         List<Projectile> projectileList;
+        GameView gameView;
 
-        public PlayerController(UnitHandler unitHandler)
+        public PlayerController(UnitHandler unitHandler, GameView gameView)
         {
             this.unitHandler = unitHandler;
             projectileList = new List<Projectile>();
+            this.gameView = gameView;
         }
 
         /**
@@ -72,10 +74,11 @@ namespace _1DV437_NeilArmstrong.Controller
             rotation = playerMovementInput / 3;
             playerShip.Rotation = rotation;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && playerShip.AbleToShoot(totalSeconds))
             {
-                projectileList.Add(new Projectile(playerShip.GetPosition(), playerShip.Rotation, this));
-                playerShip.Shoot(unitHandler, projectileList[projectileList.Count-1], totalSeconds);
+                    projectileList.Add(new Projectile(playerShip.GetPosition(), playerShip.Rotation, this));
+                    playerShip.Shoot(unitHandler, projectileList[projectileList.Count - 1], totalSeconds);
+                    gameView.PlayPlayerFireSound();
             }
 
             foreach (Projectile p in projectileList)
