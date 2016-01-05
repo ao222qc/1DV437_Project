@@ -12,11 +12,13 @@ namespace _1DV437_NeilArmstrong.Model
 
         protected List<Observer> observers = new List<Observer>();
 
-        public abstract void AddUnit(Unit unit, int amount);
-
         public abstract void NotifyObservers();
 
         public abstract void AddObserver(Observer observer);
+
+        public abstract void AddUnit(Unit unit, int amount);
+
+
 
         
     }

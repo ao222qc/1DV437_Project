@@ -9,7 +9,7 @@ namespace _1DV437_NeilArmstrong.View
 {
     class Camera
     {
-        int borderSize = 15;
+        int borderSize = 10;
         int scaleWidth;
         int scaleHeight;
 

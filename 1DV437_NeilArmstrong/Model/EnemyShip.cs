@@ -15,6 +15,7 @@ namespace _1DV437_NeilArmstrong.Model
         float radius;
         float randomMovement;
         bool enemyGotHit;
+        int ticks;
 
         public EnemyShip(Random rand, int level)
         {
@@ -38,8 +39,9 @@ namespace _1DV437_NeilArmstrong.Model
 
             this.rand = rand;
             position = new Vector2(0.5f, 0.1f);
+            //1-1.5
             randomMovement = (float)rand.NextDouble() - 0.5f;
-            randomMovement = randomMovement * 0.25f;
+            //randomMovement = randomMovement * 0.3f;
             gravity = new Vector2(0f, 0.03f);
 
         }
@@ -64,11 +66,15 @@ namespace _1DV437_NeilArmstrong.Model
 
         public override void Move(float totalSeconds, float direction)
         {
-            position.X += randomMovement * totalSeconds;
-            if (position.X > 0.95f || position.X < 0.05f)
-            {
-                randomMovement = -randomMovement;
-            }
+            ticks++;
+            position.X = (0.4f * (float)Math.Sin(randomMovement * ticks * 0.5 * Math.PI/30)) + 0.51f;
+
+
+            //position.X += randomMovement * totalSeconds;
+            //if (position.X > 0.95f || position.X < 0.05f)
+            //{
+            //    randomMovement = -randomMovement;
+            //}
             position.Y += gravity.Y * totalSeconds;
         }
 

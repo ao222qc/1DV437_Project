@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="174592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="175104">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>3lbe0h4Zr8tm4VRHLieofu1XtpA=</dsig:DigestValue>
+        <dsig:DigestValue>HBKiVD+2Qe0J1nlZZN/MkXXZap4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -177,6 +177,15 @@
       <dsig:DigestValue>1Bv7FuIJpm3fPbXLdsgG/k6SsAI=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\outerspace.xnb" size="1514885">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>51LtghICs15qrcfIHyszsnXQ0qA=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\playbutton.png" size="767">
     <hash>
       <dsig:Transforms>
@@ -240,6 +249,24 @@
       <dsig:DigestValue>y9M8XB+sM0uzxp6UjM6i7vCYewM=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\space.png" size="74417">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>o1e6lVNxqzeIdhKcpMTrxaoowm8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\space.xnb" size="3040085">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>eZMUmTqWV4NjM1tXSXLxUeWyKpQ=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\spacebackground.png" size="198520">
     <hash>
       <dsig:Transforms>
@@ -274,6 +301,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>DvMu0IWVtx3nwIeWocdaXMMTuTA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\spacebackgroundnew.png" size="978972">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>PFfq2/NYf4FOfy6jSobkJQvoVYI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\spacebackgroundnew.xnb" size="4655061">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>eyNqT/wvD8Ucl1UNeITp3HO7ptA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\spaceship.png" size="84934">

@@ -146,7 +146,9 @@ namespace _1DV437_NeilArmstrong.View
          * */
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(gameScreen, camera.GetGameWindow(), Color.White);
+            //spriteBatch.Draw(gameScreen, camera.GetGameWindow(), Color.White);
+
+            //spriteBatch.Draw(gameScreen, new Vector2(0.5f, 0.5f),Color.White);
 
             movingBackground.Update();
             movingBackground.Draw(spriteBatch);

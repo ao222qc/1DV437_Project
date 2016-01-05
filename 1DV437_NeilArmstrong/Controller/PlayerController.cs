@@ -81,13 +81,17 @@ namespace _1DV437_NeilArmstrong.Controller
                 gameView.PlayPlayerFireSound();
             }
 
-
             for (int i = 0; i < projectileList.Count; i++)
             {
                 projectileList[i].MoveProjectile(totalSeconds, 0f);
             }
 
             playerShip.Move(totalSeconds, playerMovementInput);
+        }
+
+        public void ClearProjectiles()
+        {
+            projectileList.Clear();
         }
 
         public override void Update(float totalSeconds)

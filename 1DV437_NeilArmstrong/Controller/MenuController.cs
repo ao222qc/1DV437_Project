@@ -34,7 +34,7 @@ namespace _1DV437_NeilArmstrong.Controller
         public bool CheckIfUserWantsToPlay()
         {
             if (gameView.UserClicksPlay())
-            {
+            {                
                 return true;
             }
             return false;

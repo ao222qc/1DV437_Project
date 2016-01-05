@@ -31,14 +31,12 @@ namespace _1DV437_NeilArmstrong.Model
 
         public bool EnemiesDead()
         {
+            List<Projectile> projectilesToRemove = new List<Projectile>();
             int index = 0;
             int playerIndex = 0;
-            //  foreach (Unit unit in unitList)
-            // {
+
             for (int i = 0; i < unitList.Count; i++)
             {
-
-
                 if (unitList[i] is EnemyShip)
                 {
                     index++;
@@ -47,29 +45,39 @@ namespace _1DV437_NeilArmstrong.Model
                 {
                     playerIndex++;
                 }
+                else if(unitList[i] is Boss)
+                {
+                    index++;
+                }
             }
+
             if (index == 0)
-            {
+            {               
                 return true;
             }
             return false;
         }
 
+        public void ClearProjectiles()
+        {
+            for (int i = 0; i < unitList.Count; i++)
+            {
+                if (unitList[i] is Projectile)
+                {
+                    if (unitList[i].GetPosition().Y > 1 || unitList[i].GetPosition().Y < 0)
+                    {
+                        toRemove.Add(unitList[i]);
+                        Console.WriteLine("togs bort");
+                        break;
+                    }
+                }
+            }
+        }
+
         public void ClearList()
         {
             unitList.Clear();
-            /*foreach (Unit unit in unitList)
-            {
-                if (unit is EnemyShip)
-                {
-                    toRemove.Add(unit as EnemyShip);
-                }
-                else if (unit is Projectile)
-                {
-                    toRemove.Add(unit as Projectile);
-                }               
-            }
-            unitList.RemoveAll(x => toRemove.Contains(x));*/
+
             toRemove.Clear();
 
             NotifyObservers();

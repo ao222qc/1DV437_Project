@@ -49,7 +49,6 @@ namespace _1DV437_NeilArmstrong.Model
 
         public void Collision()
         {
-
             for (int i = 0; i < unitList.Count; i++)
             {
                 if (unitList[i] is PlayerShip)
@@ -58,7 +57,14 @@ namespace _1DV437_NeilArmstrong.Model
                 }
                 else if (unitList[i] is Projectile)
                 {
-                    ProjectileHitCollision((unitList[i] as Projectile));
+                    if (unitList[i].GetPosition().Y < 0 || unitList[i].GetPosition().Y > 1)
+                    {
+                        toRemove.Add(unitList[i] as Projectile);
+                    }
+                    else
+                    {
+                        ProjectileHitCollision((unitList[i] as Projectile));
+                    }
                 }
             }
             RemoveUnits();

@@ -16,7 +16,9 @@ namespace _1DV437_NeilArmstrong.Controller
     {
         ShowCurrentWave,
         EnemyWave,
-        Bossfight
+        Bossfight,
+        GameOver,
+        GameFinished
     }
 
 
@@ -39,9 +41,11 @@ namespace _1DV437_NeilArmstrong.Controller
         int wave = 0;
         int level = 1;
         float time;
+        Game1 game1;
 
-        public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView)
+        public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView, Game1 game1)
         {
+            this.game1 = game1;
             explosionHandler = new ExplosionAnimationHandler();
             gameState = GameState.ShowCurrentWave;
             bossList = new List<Boss>();
@@ -136,15 +140,13 @@ namespace _1DV437_NeilArmstrong.Controller
                             (controllerList[i] as EnemyController).UpdateBoss(totalSeconds, bossList[k]);
                         }
 
-
-                        //if (wave == 4 && gameState != GameState.Bossfight)
-                        //{
-                        //    wave = 0;
-                        //    gameState = GameState.Bossfight;
-                        //    InitiateEnemyBoss();
-                        //}       
-                        if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
+                        if (gameState == GameState.Bossfight && unitHandler.EnemiesDead())
                         {
+                            gameState = GameState.GameFinished;
+                        }
+
+                        if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
+                        {                           
                             Sleep();
                             wave += 1;
                             amountOfEnemies += 1;
@@ -167,6 +169,11 @@ namespace _1DV437_NeilArmstrong.Controller
                     }
                 }
             }
+        }
+
+        public GameState GetGameState()
+        {
+            return gameState;
         }
 
         /*

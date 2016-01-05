@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace _1DV437_NeilArmstrong
@@ -29,11 +30,14 @@ namespace _1DV437_NeilArmstrong
         public GameState gameState;
         bool pauseKeyDown;
         bool pauseKeyDownThisFrame;
+        GameView gameView;
 
-
+        /*
+         * Set window size because scrolling background image
+         * will be messed up otherwise.
+         * */
         public Game1()
         {
-
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 700;
             graphics.PreferredBackBufferHeight = 541;
@@ -70,10 +74,11 @@ namespace _1DV437_NeilArmstrong
             //controllerList = new List<Controller>();
             camera = new Camera(graphics.GraphicsDevice.Viewport);
 
-            GameView gameView = new GameView();
+            gameView = new GameView();
 
             // TODO: load in controllers
-            gameController = new GameController(Content, camera, graphics.GraphicsDevice, gameView);
+            InitiateGame();
+            
             menuController = new MenuController(Content, camera, graphics.GraphicsDevice, gameView);
 
             //if something is true
@@ -82,6 +87,11 @@ namespace _1DV437_NeilArmstrong
                 //int amountOfEnemies = 3;
                 //gameController.InitiateEnemyWave(amountOfEnemies);
             }
+        }
+
+        public void InitiateGame()
+        {
+            gameController = new GameController(Content, camera, graphics.GraphicsDevice, gameView, this);
         }
 
         /// <summary>
@@ -100,6 +110,16 @@ namespace _1DV437_NeilArmstrong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+            if (gameController.GetGameState() == Controller.GameState.GameFinished)
+            {
+                //InitiateGame();
+            }
+            else if (gameController.GetGameState() == Controller.GameState.GameOver)
+            {
+                //u done man
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                Exit();
 
