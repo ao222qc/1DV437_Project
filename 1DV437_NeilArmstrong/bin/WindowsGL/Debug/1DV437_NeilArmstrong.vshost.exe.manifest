@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="171008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="174080">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qbi4bA3f0SHaT6xAm0qQSMwAidU=</dsig:DigestValue>
+        <dsig:DigestValue>cMRjD9pILYmM3L+hHRE9ESlIfhM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -114,6 +114,24 @@
       <dsig:DigestValue>UprsdRhE75R0t7Us/0bQje2XwYs=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\explosion.png" size="294194">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>gvFoqgPkPUAlQ4Lbq1PKH/2DLgE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\explosion.xnb" size="2097237">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>C/a+7A0bauud88+GiMcBoYyH7is=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\LaserFireSound.wav" size="110624">
     <hash>
       <dsig:Transforms>
@@ -130,6 +148,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>shbD+1AiJJRZFAOCLLRRacGeKd4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\MyFont.xnb" size="70673">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>1Bv7FuIJpm3fPbXLdsgG/k6SsAI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\playbutton.png" size="767">

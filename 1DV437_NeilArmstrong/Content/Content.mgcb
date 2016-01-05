@@ -113,3 +113,9 @@
 /processorParam:TextureFormat=Color
 /build:explosion.png
 
+#begin MyFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:MyFont.spritefont
+

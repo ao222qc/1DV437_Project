@@ -12,7 +12,7 @@ namespace _1DV437_NeilArmstrong.Model
         List<Unit> toRemove = new List<Unit>();
         public UnitHandler()
         {
-            
+
         }
 
         /* *
@@ -25,27 +25,31 @@ namespace _1DV437_NeilArmstrong.Model
             for (int i = 0; i < amount; i++)
             {
                 unitList.Add(unit);
-            }           
-             NotifyObservers();
+            }
+            NotifyObservers();
         }
 
         public bool EnemiesDead()
         {
             int index = 0;
             int playerIndex = 0;
-            foreach (Unit unit in unitList)
+            //  foreach (Unit unit in unitList)
+            // {
+            for (int i = 0; i < unitList.Count; i++)
             {
-                if (unit is EnemyShip)
+
+
+                if (unitList[i] is EnemyShip)
                 {
                     index++;
                 }
-                else if (unit is PlayerShip)
+                else if (unitList[i] is PlayerShip)
                 {
                     playerIndex++;
                 }
             }
             if (index == 0)
-            {                            
+            {
                 return true;
             }
             return false;
@@ -72,7 +76,7 @@ namespace _1DV437_NeilArmstrong.Model
         }
 
         public void RemoveUnit(List<Unit> unitsToRemove)
-        {         
+        {
             unitList.RemoveAll(x => unitsToRemove.Contains(x));
 
             NotifyObservers();
@@ -85,12 +89,16 @@ namespace _1DV437_NeilArmstrong.Model
 
         public override void NotifyObservers()
         {
-            foreach (Observer obs in observers)
-            {
-                obs.UpdateList(unitList);
-            }
+            //foreach (Observer obs in observers)
+           // {
+                for (int i = 0; i < observers.Count; i++)
+                {
+                    observers[i].UpdateList(unitList);
+                }
+                //obs.UpdateList(unitList);
+           // }
 
-           
+
         }
     }
 }

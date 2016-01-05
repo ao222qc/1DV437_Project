@@ -18,5 +18,6 @@ namespace _1DV437_NeilArmstrong.Model
 
         public abstract void AddObserver(Observer observer);
 
+        
     }
 }

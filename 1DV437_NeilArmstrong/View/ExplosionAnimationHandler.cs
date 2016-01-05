@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,36 @@ namespace _1DV437_NeilArmstrong.View
 
         }
 
-        public void AddExplosion(Vector2 startPosition)
+        public void AddExplosion(Vector2 startPosition, Texture2D explosion, ExplosionType explosionType)
         {
-            explosionList.Add(new ExplosionAnimation(startPosition));
+            explosionList.Add(new ExplosionAnimation(startPosition, explosion, explosionType));
         }
 
         public void Update(float totalSeconds)
         {
-            foreach (ExplosionAnimation ea in explosionList)
+
+            for (int i = 0; i < explosionList.Count; i++)
             {
-                ea.Update(totalSeconds);
+                explosionList[i].Update(totalSeconds);
+            }
+            ClearList();
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Camera camera)
+        {
+            for (int i = 0; i < explosionList.Count; i++)
+            {
+                explosionList[i].Draw(spriteBatch, camera);
+            }
+            ClearList();
+        }
+
+        public void ClearList()
+        {
+            if (explosionList.Count > 10)
+            {
+                explosionList.Clear();
             }
         }
 

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="172032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="173568">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mG4xbFma6mfgEWZvCgfo5fqbZV0=</dsig:DigestValue>
+        <dsig:DigestValue>L2UzaRdPfL6sa7da45AiDC9NKr4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -148,6 +148,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>shbD+1AiJJRZFAOCLLRRacGeKd4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\MyFont.xnb" size="70673">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>1Bv7FuIJpm3fPbXLdsgG/k6SsAI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\playbutton.png" size="767">

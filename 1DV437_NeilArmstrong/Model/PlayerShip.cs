@@ -22,7 +22,7 @@ namespace _1DV437_NeilArmstrong.Model
             position = new Vector2(0.5f, 0.9f);
             speed = 0.8f;
             fireDelay = 0.3f;
-            hitPoints = 5;
+            hitPoints = 8;
         }
 
         public float GetShipSpeed()
@@ -38,6 +38,11 @@ namespace _1DV437_NeilArmstrong.Model
                 IsDead = true;
                 Kill();
             }
+        }
+
+        public int GetHitPoints()
+        {
+            return hitPoints;
         }
 
         public bool PlayerGotHit()

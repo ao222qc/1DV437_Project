@@ -38,6 +38,7 @@ namespace _1DV437_NeilArmstrong
             gameState = GameState.MenuScreen;
             IsMouseVisible = true;
             pauseKeyDown = false;
+            IsFixedTimeStep = false;
         }
 
         /// <summary>

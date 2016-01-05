@@ -26,39 +26,39 @@ namespace _1DV437_NeilArmstrong.Model
         public override void UpdateList(List<Unit> unitList)
         {
             this.unitList = unitList;
-
-            foreach (Unit unit in this.unitList)
+            for (int i = 0; i < this.unitList.Count; i++)
             {
-                if (unit is EnemyShip)
+                if (unitList[i] is EnemyShip)
                 {
-                    enemyList.Add(unit as EnemyShip);
+                    enemyList.Add(unitList[i] as EnemyShip);
                 }
-                else if (unit is Projectile)
+                else if (unitList[i] is Projectile)
                 {
                     projectileList.Add((unitList[unitList.Count - 1] as Projectile));
                 }
-                else if (unit is PlayerShip)
+                else if (unitList[i] is PlayerShip)
                 {
-                    playerShipList.Add(unit as PlayerShip);
+                    playerShipList.Add(unitList[i] as PlayerShip);
                 }
-                else if (unit is Boss)
+                else if (unitList[i] is Boss)
                 {
-                    bossList.Add(unit as Boss);
+                    bossList.Add(unitList[i] as Boss);
                 }
             }
         }
 
         public void Collision()
         {
-            foreach (Unit unit in unitList)
+
+            for (int i = 0; i < unitList.Count; i++)
             {
-                if (unit is PlayerShip)
+                if (unitList[i] is PlayerShip)
                 {
-                    PlayerWallCollision((unit as PlayerShip));
+                    PlayerWallCollision((unitList[i] as PlayerShip));
                 }
-                else if (unit is Projectile)
+                else if (unitList[i] is Projectile)
                 {
-                    ProjectileHitCollision((unit as Projectile));
+                    ProjectileHitCollision((unitList[i] as Projectile));
                 }
             }
             RemoveUnits();
@@ -90,38 +90,43 @@ namespace _1DV437_NeilArmstrong.Model
 
             if (projectile.ProjectileType == Model.ProjectileType.Player)
             {
-                foreach (EnemyShip enemy in enemyList)
-                {
-                    float enemyPosX = enemy.GetPosition().X;
-                    float enemyPosY = enemy.GetPosition().Y;
 
-                    if (pPositionX - projectile.Radius >= enemyPosX - enemy.Radius && pPositionX + projectile.Radius <= enemyPosX + enemy.Radius
-                        && pPositionY - projectile.Radius >= enemyPosY - enemy.Radius && pPositionY + projectile.Radius <= enemyPosY + enemy.Radius)
+                for (int i = 0; i < enemyList.Count; i++)
+                {
+
+                    float enemyPosX = enemyList[i].GetPosition().X;
+                    float enemyPosY = enemyList[i].GetPosition().Y;
+
+                    if (pPositionX - projectile.Radius >= enemyPosX - enemyList[i].Radius && pPositionX + projectile.Radius <= enemyPosX + enemyList[i].Radius
+                        && pPositionY - projectile.Radius >= enemyPosY - enemyList[i].Radius && pPositionY + projectile.Radius <= enemyPosY + enemyList[i].Radius)
                     {
-                        
-                        enemy.Hit();
-                        if (enemy.IsDead)
+
+                        enemyList[i].Hit();
+                        if (enemyList[i].IsDead)
                         {
-                            toRemove.Add(enemy);
+                            gameView.DrawOnDeathAnimation(enemyList[i].GetPosition());
+                            toRemove.Add(enemyList[i]);
                         }
                         toRemove.Add(projectile);
                         break;
                     }
                 }
 
-                foreach (Boss boss in bossList)
+                // foreach (Boss boss in bossList)
+                //{
+                for (int i = 0; i < bossList.Count; i++)
                 {
-                    float bossPosX = boss.GetPosition().X;
-                    float bossPosY = boss.GetPosition().Y;
+                    float bossPosX = bossList[i].GetPosition().X;
+                    float bossPosY = bossList[i].GetPosition().Y;
 
-                    if (pPositionX - projectile.Radius >= bossPosX - boss.Radius && pPositionX + projectile.Radius <= bossPosX + boss.Radius
-                        && pPositionY - projectile.Radius >= bossPosY - boss.Radius && pPositionY + projectile.Radius <= bossPosY + boss.Radius)
+                    if (pPositionX - projectile.Radius >= bossPosX - bossList[i].Radius && pPositionX + projectile.Radius <= bossPosX + bossList[i].Radius
+                        && pPositionY - projectile.Radius >= bossPosY - bossList[i].Radius && pPositionY + projectile.Radius <= bossPosY + bossList[i].Radius)
                     {
-                        
-                        boss.Hit();
-                        if (boss.IsDead)
+                        bossList[i].Hit();
+                        if (bossList[i].IsDead)
                         {
-                            toRemove.Add(boss);
+                            gameView.DrawOnDeathAnimation(bossList[i].GetPosition());
+                            toRemove.Add(bossList[i]);
                         }
                         toRemove.Add(projectile);
                         break;
@@ -130,26 +135,26 @@ namespace _1DV437_NeilArmstrong.Model
             }
             else if (projectile.ProjectileType == Model.ProjectileType.Enemy)
             {
-                foreach (PlayerShip player in playerShipList)
+                for (int i = 0; i < playerShipList.Count; i++)
                 {
-                    float playerPosX = player.GetPosition().X;
-                    float playerPosY = player.GetPosition().Y;
 
-                    if (pPositionX - projectile.Radius >= playerPosX - player.Radius && pPositionX + projectile.Radius <= playerPosX + player.Radius
-                        && pPositionY >= playerPosY - player.Radius && pPositionY <= playerPosY + player.Radius)
+                    float playerPosX = playerShipList[i].GetPosition().X;
+                    float playerPosY = playerShipList[i].GetPosition().Y;
+
+                    if (pPositionX - projectile.Radius >= playerPosX - playerShipList[i].Radius && pPositionX + projectile.Radius <= playerPosX + playerShipList[i].Radius
+                        && pPositionY >= playerPosY - playerShipList[i].Radius && pPositionY <= playerPosY + playerShipList[i].Radius)
                     {
                         toRemove.Add(projectile);
-                        player.Hit();
-                        if (player.IsDead)
+                        playerShipList[i].Hit();
+                        if (playerShipList[i].IsDead)
                         {
-                            toRemove.Add(player);
+                            gameView.DrawOnDeathAnimation(playerShipList[i].GetPosition());
+                            toRemove.Add(playerShipList[i]);
                         }
-                        
                         break;
                     }
                 }
             }
-            
         }
     }
 }

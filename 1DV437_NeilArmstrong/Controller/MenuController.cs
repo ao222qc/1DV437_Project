@@ -14,11 +14,10 @@ namespace _1DV437_NeilArmstrong.Controller
         Camera camera;
         GraphicsDevice graphics;
         GameView gameView;
-        bool showMenu;
 
         public MenuController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView)
         {
-            showMenu = true;
+            //showMenu = true;
             this.content = content;
             this.camera = camera;
             this.graphics = graphics;
@@ -28,13 +27,14 @@ namespace _1DV437_NeilArmstrong.Controller
         public override void Update(float totalSeconds)
         {
             
+
+
         }
 
         public bool CheckIfUserWantsToPlay()
         {
-            if (gameView.UserClicksPlay() )//&& showMenu)
+            if (gameView.UserClicksPlay())
             {
-                //showMenu = false;
                 return true;
             }
             return false;

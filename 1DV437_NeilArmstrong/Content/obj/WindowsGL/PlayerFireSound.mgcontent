@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/PlayerFireSound.wav</SourceFile>
   <SourceTime>2016-01-02T15:27:45.6957991+01:00</SourceTime>
   <DestFile>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/bin/WindowsGL/PlayerFireSound.xnb</DestFile>
-  <DestTime>2016-01-02T15:30:07.6864202+01:00</DestTime>
+  <DestTime>2016-01-04T15:13:57.0199144+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

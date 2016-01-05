@@ -31,16 +31,18 @@ namespace _1DV437_NeilArmstrong.View
         SoundEffect playerLaserFire;
         List<SoundEffect> soundEffects = new List<SoundEffect>();
         Texture2D explosion;
-
+        SpriteFont spriteFont;
+        SpriteBatch spriteBatch;
 
         public GameView()
         {
             myList = new List<Unit>();
         }
 
-        public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics)
+        public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics, ExplosionAnimationHandler explosionHandler)
         {
-            explosionHandler = new ExplosionAnimationHandler();
+           // spriteFont = content.Load<SpriteFont>("MyFont");
+            this.explosionHandler = explosionHandler;
             explosion = content.Load<Texture2D>("explosion");
             playerLaserFire = content.Load<SoundEffect>("PlayerFireSound");
             laserFire = content.Load<SoundEffect>("LaserFireSound");
@@ -63,26 +65,32 @@ namespace _1DV437_NeilArmstrong.View
         public void PlayEnemyFireSound()
         {
             soundEffects.Add(laserFire);
-            foreach(SoundEffect se in soundEffects)
+            for (int i = 0; i < soundEffects.Count; i++)
             {
-                se.Play(0.5f, 0.5f, 0f);
+                soundEffects[i].Play(0.5f, 0.5f, 0f);
             }
-             soundEffects.Clear();        
+            //foreach(SoundEffect se in soundEffects)
+            //{
+            //    se.Play(0.5f, 0.5f, 0f);
+            //}
+             soundEffects.Clear();
+             //laserFire.Dispose();
+           
         }
 
         public void PlayPlayerFireSound()
         {
             soundEffects.Add(playerLaserFire);
-            foreach (SoundEffect se in soundEffects)
+            for (int i = 0; i < soundEffects.Count; i++)
             {
-                se.Play(0.1f, 0.6f, 0f);
+                soundEffects[i].Play(0.1f, 0.6f, 0f);
             }
+            //foreach (SoundEffect se in soundEffects)
+            //{
+            //    se.Play(0.1f, 0.6f, 0f);
+            //}
             soundEffects.Clear();
-        }
-
-        public void DrawExplosion()
-        {
- 
+           
         }
 
         //Called upon unit being added
@@ -100,6 +108,7 @@ namespace _1DV437_NeilArmstrong.View
                     null, Color.White, 0f, new Vector2(playButton.Bounds.Width/2, playButton.Bounds.Height/2),
                     1f, SpriteEffects.None, 0f);           
         }
+
         public bool UserClicksPlay()
         {
             MouseState ms = Mouse.GetState();
@@ -117,49 +126,68 @@ namespace _1DV437_NeilArmstrong.View
             }
             return false;           
         }
+
+        public void DrawOnDeathAnimation(Vector2 position)
+        {
+            explosionHandler.AddExplosion(position, explosion, ExplosionType.Death);
+        }
+
+
+        /*
+         * Handles basic drawing of the game
+         * Projectiles, enemies, player, background
+         * checks if units get hit to display
+         * an animation (explosion or particles)
+         * These animations are drawn in different
+         * classes in the view.
+         * */
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, camera.GetGameWindow(), Color.White);
-    
-            foreach(Unit unit in myList)
-            {
-                if (unit is EnemyShip)
+
+            for (int i = 0; i < myList.Count; i++)
+            {       
+                if (myList[i]  is EnemyShip)
                 {
-                    spriteBatch.Draw(enemyShip, camera.scaleVisualPosition(unit.GetPosition()),
+                    if ((myList[i] as EnemyShip).EnemyGotHit())
+                    {
+                        explosionHandler.AddExplosion((myList[i] as EnemyShip).GetPosition(), explosion, ExplosionType.Hit);
+                    }
+                    spriteBatch.Draw(enemyShip, camera.scaleVisualPosition(myList[i].GetPosition()),
                     null, Color.White, 0f, new Vector2(enemyShip.Bounds.Width/2, enemyShip.Bounds.Height/2),
-                    (unit as EnemyShip).Scale, SpriteEffects.None, 0f);
+                    (myList[i] as EnemyShip).Scale, SpriteEffects.None, 0f);
                 }
-                else if (unit is PlayerShip)
+                else if (myList[i] is PlayerShip)
                 {
                     Color color = new Color();
                     color = Color.White;
-                    if ((unit as PlayerShip).PlayerGotHit())
+                    if ((myList[i] as PlayerShip).PlayerGotHit())
                     {
-                        explosionHandler.AddExplosion((unit as PlayerShip).GetPosition());
-
-
-                        //color = Color.Red;
-                        //draw explosion animation
-                        //play hit sound
-                        //particle effect etc
+                        explosionHandler.AddExplosion((myList[i] as PlayerShip).GetPosition(), explosion, ExplosionType.Hit);
                     }
-                    spriteBatch.Draw(playerShip, camera.scaleVisualPosition(unit.GetPosition()),
-                    null, color, (unit as PlayerShip).Rotation, new Vector2(playerShip.Bounds.Width / 2, playerShip.Bounds.Height / 2),
-                    (unit as PlayerShip).Scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(playerShip, camera.scaleVisualPosition(myList[i].GetPosition()),
+                    null, color, (myList[i] as PlayerShip).Rotation, new Vector2(playerShip.Bounds.Width / 2, playerShip.Bounds.Height / 2),
+                    (myList[i] as PlayerShip).Scale, SpriteEffects.None, 0f);
                 }
-                else if (unit is Projectile)
+                else if (myList[i] is Projectile)
                 {
-                    spriteBatch.Draw(basicProjectile, camera.scaleProjectilePosition(unit.GetPosition()),
-                    null, Color.White, (unit as Projectile).Angle, new Vector2(playerShip.Bounds.Width/1.5f, playerShip.Bounds.Height/2),
-                    (unit as Projectile).Scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(basicProjectile, camera.scaleProjectilePosition(myList[i].GetPosition()),
+                    null, Color.White, (myList[i] as Projectile).Angle, new Vector2(playerShip.Bounds.Width / 1.5f, playerShip.Bounds.Height / 2),
+                    (myList[i] as Projectile).Scale, SpriteEffects.None, 0f);
                 }
-                else if (unit is Boss)
+                else if (myList[i] is Boss)
                 {
-                    spriteBatch.Draw(boss, camera.scaleVisualPosition(unit.GetPosition()),
+                    if ((myList[i] as Boss).BossGotHit())
+                    {
+                        explosionHandler.AddExplosion((myList[i] as Boss).GetPosition(), explosion, ExplosionType.Hit);
+                    }
+
+                    spriteBatch.Draw(boss, camera.scaleVisualPosition(myList[i].GetPosition()),
                     null, Color.White, 3.1f, new Vector2(boss.Bounds.Width / 2, boss.Bounds.Height / 2),
-                    (unit as Boss).Scale, SpriteEffects.None, 0f);
+                    (myList[i] as Boss).Scale, SpriteEffects.None, 0f);
                 }
-            }           
+            }
+                explosionHandler.Draw(spriteBatch, camera);        
         }
     }
 }

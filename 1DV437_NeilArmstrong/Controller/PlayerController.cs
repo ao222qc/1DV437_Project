@@ -37,7 +37,7 @@ namespace _1DV437_NeilArmstrong.Controller
 
         public void Update(float totalSeconds, PlayerShip playerShip)
         {
-            
+
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 if (playerMovementInput > playerShip.GetShipSpeed() * -1)
@@ -76,24 +76,23 @@ namespace _1DV437_NeilArmstrong.Controller
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && playerShip.AbleToShoot(totalSeconds))
             {
-                    projectileList.Add(new Projectile(playerShip.GetPosition(), playerShip.Rotation, this));
-                    playerShip.Shoot(unitHandler, projectileList[projectileList.Count - 1], totalSeconds);
-                    gameView.PlayPlayerFireSound();
+                projectileList.Add(new Projectile(playerShip.GetPosition(), playerShip.Rotation, this));
+                playerShip.Shoot(unitHandler, projectileList[projectileList.Count - 1], totalSeconds);
+                gameView.PlayPlayerFireSound();
             }
 
-            foreach (Projectile p in projectileList)
+
+            for (int i = 0; i < projectileList.Count; i++)
             {
-                p.MoveProjectile(totalSeconds, 0f);
+                projectileList[i].MoveProjectile(totalSeconds, 0f);
             }
-             
-             playerShip.Move(totalSeconds, playerMovementInput);
-            
-        }
 
+            playerShip.Move(totalSeconds, playerMovementInput);
+        }
 
         public override void Update(float totalSeconds)
         {
-            
+
         }
     }
 }

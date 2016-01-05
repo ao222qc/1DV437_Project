@@ -14,6 +14,7 @@ namespace _1DV437_NeilArmstrong.Model
         float scale = 0.3f;
         float radius;
         float movement;
+        bool bossGotHit;
 
         public Boss(Random rand)
         {
@@ -38,6 +39,15 @@ namespace _1DV437_NeilArmstrong.Model
         public float Radius
         {
             get { return radius; }
+        }
+        public bool BossGotHit()
+        {
+            if (bossGotHit)
+            {
+                bossGotHit = false;
+                return true;
+            }
+            return false;
         }
 
         public float Scale
@@ -69,6 +79,7 @@ namespace _1DV437_NeilArmstrong.Model
         public void Hit()
         {
             this.hitPoints = this.hitPoints - 1;
+            bossGotHit = true;
             if (this.hitPoints <= 0)
             {
                 this.Kill();

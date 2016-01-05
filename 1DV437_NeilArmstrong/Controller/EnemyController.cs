@@ -34,17 +34,20 @@ namespace _1DV437_NeilArmstrong.Controller
                     gameView.PlayEnemyFireSound();
                 }
             }
-                foreach (Projectile p in projectileList)
-                {
-                    p.MoveProjectile(totalSeconds, 0f);
-                }
 
-                enemyShip.Move(totalSeconds, 0f);           
+            for (int i = 0; i < projectileList.Count; i++)
+            {
+                projectileList[i].MoveProjectile(totalSeconds, 0f);
+            }
+
+
+
+            enemyShip.Move(totalSeconds, 0f);
         }
 
         public void UpdateBoss(float totalSeconds, Boss boss)
         {
-            if(boss.IsDead == false)
+            if (boss.IsDead == false)
             {
                 if (boss.AbleToShoot(totalSeconds))
                 {
@@ -52,9 +55,10 @@ namespace _1DV437_NeilArmstrong.Controller
                     boss.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
                 }
             }
-            foreach (Projectile p in projectileList)
+
+            for (int i = 0; i < projectileList.Count; i++)
             {
-                p.MoveProjectile(totalSeconds, 0f);
+                projectileList[i].MoveProjectile(totalSeconds, 0f);
             }
 
             boss.Move(totalSeconds, 0f);

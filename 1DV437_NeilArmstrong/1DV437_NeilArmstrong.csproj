@@ -90,6 +90,7 @@
     <Compile Include="View\ExplosionAnimationHandler.cs" />
     <Compile Include="View\GameView.cs" />
     <Compile Include="Observer.cs" />
+    <Compile Include="View\ShowStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

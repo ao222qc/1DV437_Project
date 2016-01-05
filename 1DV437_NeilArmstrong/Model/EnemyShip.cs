@@ -11,21 +11,48 @@ namespace _1DV437_NeilArmstrong.Model
         Vector2 gravity;
         Random rand;
         float time;
-        float scale = 0.3f;
+        float scale;
         float radius;
         float randomMovement;
-        int enemyShootingDelay;
+        bool enemyGotHit;
 
-        public EnemyShip(Random rand)
+        public EnemyShip(Random rand, int level)
         {
+            scale = 0.3f;
             radius = scale / 2;
+            if (level == 1)
+            {                
+                hitPoints = 1;
+                fireDelay = 1.4f;
+            }
+            else if (level == 2)
+            {
+                hitPoints = 2;
+                fireDelay = 1.2f;
+            }
+            else if (level == 3)
+            {
+                hitPoints = 3;
+                fireDelay = 1f;
+            }
+
             this.rand = rand;
             position = new Vector2(0.5f, 0.1f);
             randomMovement = (float)rand.NextDouble() - 0.5f;
             randomMovement = randomMovement * 0.25f;
             gravity = new Vector2(0f, 0.03f);
-            hitPoints = 3;
-            fireDelay = 1.4f;
+
+        }
+       
+
+        public bool EnemyGotHit()
+        {
+            if (enemyGotHit)
+            {
+                enemyGotHit = false;
+                return true;
+            }
+            return false;
         }
 
         public bool IsDead
@@ -48,6 +75,7 @@ namespace _1DV437_NeilArmstrong.Model
         public float Scale
         {
             get { return scale; }
+            set { scale = value; }
         }
 
         public float Radius
@@ -81,6 +109,7 @@ namespace _1DV437_NeilArmstrong.Model
         public void Hit()
         {
             this.hitPoints = this.hitPoints - 1;
+            enemyGotHit = true;
             if (this.hitPoints <= 0)
             {
                 this.Kill();
