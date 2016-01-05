@@ -33,7 +33,10 @@ namespace _1DV437_NeilArmstrong
 
         public Game1()
         {
+
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 700;
+            graphics.PreferredBackBufferHeight = 541;
             Content.RootDirectory = "Content";
             gameState = GameState.MenuScreen;
             IsMouseVisible = true;

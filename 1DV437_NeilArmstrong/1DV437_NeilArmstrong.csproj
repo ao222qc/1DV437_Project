@@ -90,6 +90,7 @@
     <Compile Include="View\ExplosionAnimationHandler.cs" />
     <Compile Include="View\GameView.cs" />
     <Compile Include="Observer.cs" />
+    <Compile Include="View\MovingBackground.cs" />
     <Compile Include="View\ShowStats.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,12 +107,15 @@
     <Content Include="Content\bosship.png" />
     <Content Include="Content\enemyspaceship.png" />
     <Content Include="Content\explosion.png" />
+    <Content Include="Content\explosionsound.wav" />
     <Content Include="Content\LaserFireSound.wav" />
     <Content Include="Content\playbutton.png" />
     <Content Include="Content\PlayerFireSound.wav" />
     <Content Include="Content\projectile.png" />
+    <Content Include="Content\space.png" />
     <Content Include="Content\spacebackground.png" />
     <Content Include="Content\spacebackgroundmenu.png" />
+    <Content Include="Content\spacebackgroundnew.png" />
     <Content Include="Content\spaceship.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>

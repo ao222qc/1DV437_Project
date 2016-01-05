@@ -104,6 +104,7 @@ namespace _1DV437_NeilArmstrong.Model
                         enemyList[i].Hit();
                         if (enemyList[i].IsDead)
                         {
+                            gameView.PlayShipExplodingSound();
                             gameView.DrawOnDeathAnimation(enemyList[i].GetPosition());
                             toRemove.Add(enemyList[i]);
                         }
@@ -126,6 +127,7 @@ namespace _1DV437_NeilArmstrong.Model
                         if (bossList[i].IsDead)
                         {
                             gameView.DrawOnDeathAnimation(bossList[i].GetPosition());
+                            gameView.PlayShipExplodingSound();
                             toRemove.Add(bossList[i]);
                         }
                         toRemove.Add(projectile);
@@ -149,6 +151,7 @@ namespace _1DV437_NeilArmstrong.Model
                         if (playerShipList[i].IsDead)
                         {
                             gameView.DrawOnDeathAnimation(playerShipList[i].GetPosition());
+                            gameView.PlayShipExplodingSound();
                             toRemove.Add(playerShipList[i]);
                         }
                         break;

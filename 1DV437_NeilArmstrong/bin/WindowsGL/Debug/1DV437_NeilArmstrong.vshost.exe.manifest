@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="174080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="174592">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>cMRjD9pILYmM3L+hHRE9ESlIfhM=</dsig:DigestValue>
+        <dsig:DigestValue>3lbe0h4Zr8tm4VRHLieofu1XtpA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -130,6 +130,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>C/a+7A0bauud88+GiMcBoYyH7is=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\explosionsound.wav" size="490264">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>S+uGxR9asb/4XXv0rrnh/NvkDQY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\explosionsound.xnb" size="490325">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ExSmvwi3c7oEKdIYxiHvtd9r90w=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\LaserFireSound.wav" size="110624">

@@ -40,8 +40,6 @@ namespace _1DV437_NeilArmstrong.Controller
                 projectileList[i].MoveProjectile(totalSeconds, 0f);
             }
 
-
-
             enemyShip.Move(totalSeconds, 0f);
         }
 
@@ -53,6 +51,7 @@ namespace _1DV437_NeilArmstrong.Controller
                 {
                     projectileList.Add(new Projectile(boss.GetPosition(), 0f, this));
                     boss.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
+                    gameView.PlayEnemyFireSound();
                 }
             }
 

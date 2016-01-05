@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,8 @@ namespace _1DV437_NeilArmstrong.View
         SoundEffect playerLaserFire;
         List<SoundEffect> soundEffects = new List<SoundEffect>();
         Texture2D explosion;
-        SpriteFont spriteFont;
-        SpriteBatch spriteBatch;
+        SoundEffect explodingShipSound;
+        MovingBackground movingBackground;
 
         public GameView()
         {
@@ -41,7 +42,8 @@ namespace _1DV437_NeilArmstrong.View
 
         public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics, ExplosionAnimationHandler explosionHandler)
         {
-           // spriteFont = content.Load<SpriteFont>("MyFont");
+            movingBackground = new MovingBackground(content, camera);
+            explodingShipSound = content.Load<SoundEffect>("explosionsound");
             this.explosionHandler = explosionHandler;
             explosion = content.Load<Texture2D>("explosion");
             playerLaserFire = content.Load<SoundEffect>("PlayerFireSound");
@@ -69,13 +71,18 @@ namespace _1DV437_NeilArmstrong.View
             {
                 soundEffects[i].Play(0.5f, 0.5f, 0f);
             }
-            //foreach(SoundEffect se in soundEffects)
-            //{
-            //    se.Play(0.5f, 0.5f, 0f);
-            //}
              soundEffects.Clear();
-             //laserFire.Dispose();
-           
+             //laserFire.Dispose();          
+        }
+
+        public void PlayShipExplodingSound()
+        {
+            soundEffects.Add(explodingShipSound);
+            for (int i = 0; i < soundEffects.Count; i++)
+            {
+                soundEffects[i].Play(0.5f, 0.5f, 0f);
+            }
+            soundEffects.Clear();
         }
 
         public void PlayPlayerFireSound()
@@ -85,12 +92,8 @@ namespace _1DV437_NeilArmstrong.View
             {
                 soundEffects[i].Play(0.1f, 0.6f, 0f);
             }
-            //foreach (SoundEffect se in soundEffects)
-            //{
-            //    se.Play(0.1f, 0.6f, 0f);
-            //}
-            soundEffects.Clear();
-           
+
+            soundEffects.Clear();          
         }
 
         //Called upon unit being added
@@ -143,7 +146,11 @@ namespace _1DV437_NeilArmstrong.View
          * */
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, camera.GetGameWindow(), Color.White);
+            spriteBatch.Draw(gameScreen, camera.GetGameWindow(), Color.White);
+
+            movingBackground.Update();
+            movingBackground.Draw(spriteBatch);
+
 
             for (int i = 0; i < myList.Count; i++)
             {       

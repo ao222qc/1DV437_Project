@@ -20,6 +20,15 @@ namespace _1DV437_NeilArmstrong.View
             scaleHeight = graphics.Height - borderSize * 2;
         }
 
+        public int GetScaledWidth()
+        {
+            return scaleWidth;
+        }
+        public int GetScaledHeight()
+        {
+            return scaleHeight;
+        }
+
         public Rectangle GetGameWindow()
         {
             return new Rectangle(borderSize, borderSize, scaleWidth, scaleHeight);

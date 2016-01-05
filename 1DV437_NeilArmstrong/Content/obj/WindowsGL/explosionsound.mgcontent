@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/explosionsound.wav</SourceFile>
+  <SourceTime>2016-01-05T14:43:17.4711722+01:00</SourceTime>
+  <DestFile>C:/Users/Adam/Documents/Visual Studio 2013/Projects/1DV437_NeilArmstrong/1DV437_NeilArmstrong/Content/bin/WindowsGL/explosionsound.xnb</DestFile>
+  <DestTime>2016-01-05T14:47:14.3429868+01:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2015-04-29T19:14:44+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
