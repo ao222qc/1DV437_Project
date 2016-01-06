@@ -72,7 +72,6 @@ namespace _1DV437_NeilArmstrong.Model
                 projectileSpeed = -0.2f;
                 position.Y -= projectileSpeed * totalSeconds;
             }
-
             direction = angle;
             position.X += direction * totalSeconds;          
         }

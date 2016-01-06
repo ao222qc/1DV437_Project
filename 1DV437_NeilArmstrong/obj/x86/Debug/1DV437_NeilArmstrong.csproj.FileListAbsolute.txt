@@ -25,3 +25,4 @@ C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spacebackgroundnew.xnb
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\space.xnb
 C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\outerspace.xnb
+C:\Users\Adam\Documents\Visual Studio 2013\Projects\1DV437_NeilArmstrong\1DV437_NeilArmstrong\bin\WindowsGL\Debug\Content\spark.xnb

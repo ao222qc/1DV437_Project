@@ -34,14 +34,21 @@ namespace _1DV437_NeilArmstrong.View
         Texture2D explosion;
         SoundEffect explodingShipSound;
         MovingBackground movingBackground;
+        ParticleAnimationHandler particleAnimationHandler;
+        bool mouseClick;
+        bool mouseClickThisFrame;
+        Texture2D particle;
 
         public GameView()
         {
             myList = new List<Unit>();
         }
 
-        public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics, ExplosionAnimationHandler explosionHandler)
+        public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics,
+            ExplosionAnimationHandler explosionHandler, ParticleAnimationHandler particleAnimationHandler)
         {
+            particle = content.Load<Texture2D>("spark");
+            this.particleAnimationHandler = particleAnimationHandler;
             movingBackground = new MovingBackground(content, camera);
             explodingShipSound = content.Load<SoundEffect>("explosionsound");
             this.explosionHandler = explosionHandler;
@@ -62,6 +69,7 @@ namespace _1DV437_NeilArmstrong.View
                 {
                     Color.White
                 });
+            mouseClick = false;
         }
 
         public void PlayEnemyFireSound()
@@ -105,18 +113,22 @@ namespace _1DV437_NeilArmstrong.View
         }
 
         public void DrawMenu(SpriteBatch spriteBatch)
-        {            
+        {
             spriteBatch.Draw(menuBackground, camera.GetGameWindow(), Color.White);
             spriteBatch.Draw(playButton, camera.scaleVisualPosition(playButtonLocation),
                     null, Color.White, 0f, new Vector2(playButton.Bounds.Width/2, playButton.Bounds.Height/2),
                     1f, SpriteEffects.None, 0f);           
         }
 
+
         public bool UserClicksPlay()
         {
             MouseState ms = Mouse.GetState();
-
             if (ms.LeftButton == ButtonState.Pressed)
+            {
+                mouseClickThisFrame = true;
+            }
+            if (mouseClickThisFrame && !mouseClick)
             {
                 Vector2 mousePosition = new Vector2(ms.X, ms.Y);             
                 Vector2 visualPos = camera.scaleVisualPosition(playButtonLocation);
@@ -127,11 +139,14 @@ namespace _1DV437_NeilArmstrong.View
                     return true;
                 }
             }
+            mouseClickThisFrame = false;
+            //mouseClick = mouseClickThisFrame;
             return false;           
         }
 
         public void DrawOnDeathAnimation(Vector2 position)
         {
+            particleAnimationHandler.AddParticle(position);
             explosionHandler.AddExplosion(position, explosion, ExplosionType.Death);
         }
 
@@ -149,7 +164,6 @@ namespace _1DV437_NeilArmstrong.View
             //spriteBatch.Draw(gameScreen, camera.GetGameWindow(), Color.White);
 
             //spriteBatch.Draw(gameScreen, new Vector2(0.5f, 0.5f),Color.White);
-
             movingBackground.Update();
             movingBackground.Draw(spriteBatch);
 
@@ -196,7 +210,8 @@ namespace _1DV437_NeilArmstrong.View
                     (myList[i] as Boss).Scale, SpriteEffects.None, 0f);
                 }
             }
-                explosionHandler.Draw(spriteBatch, camera);        
+                explosionHandler.Draw(spriteBatch, camera);
+                particleAnimationHandler.Draw(spriteBatch, camera, particle);
         }
     }
 }

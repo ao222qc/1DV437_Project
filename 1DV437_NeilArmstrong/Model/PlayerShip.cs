@@ -18,11 +18,17 @@ namespace _1DV437_NeilArmstrong.Model
 
         public PlayerShip()
         {
+            IsDead = false;
             radius = scale / 2;
             position = new Vector2(0.5f, 0.9f);
             speed = 0.8f;
             fireDelay = 0.3f;
-            hitPoints = 8;
+            hitPoints = 1;
+        }
+
+        public bool PlayerDead()
+        {
+            return IsDead;
         }
 
         public float GetShipSpeed()

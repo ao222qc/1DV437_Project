@@ -26,6 +26,7 @@ namespace _1DV437_NeilArmstrong.Controller
     {
         ShowStats showStats;
         ExplosionAnimationHandler explosionHandler;
+        ParticleAnimationHandler particleHandler;
         GameState gameState;
         List<EnemyShip> enemyShipList;
         List<Boss> bossList;
@@ -43,8 +44,16 @@ namespace _1DV437_NeilArmstrong.Controller
         float time;
         Game1 game1;
 
+        public void ClearShit()
+        {
+            enemyShipList.Clear();
+            unitHandler.ClearList();
+
+        }
+
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView, Game1 game1)
         {
+            particleHandler = new ParticleAnimationHandler(content);
             this.game1 = game1;
             explosionHandler = new ExplosionAnimationHandler();
             gameState = GameState.ShowCurrentWave;
@@ -52,13 +61,13 @@ namespace _1DV437_NeilArmstrong.Controller
             enemyShipList = new List<EnemyShip>();
             rand = new Random();
             this.gameView = gameView;
-            gameView.Initiate(content, camera, graphics, explosionHandler);
+            gameView.Initiate(content, camera, graphics, explosionHandler, particleHandler);
             unitHandler = new UnitHandler();
             playerShip = new PlayerShip();
             collisionHandler = new CollisionHandler(gameView, unitHandler);
             amountOfEnemies = 0;
 
-            showStats = new ShowStats(playerShip, camera, this);
+            showStats = new ShowStats(playerShip, camera, this, collisionHandler);
             showStats.LoadContent(content);
 
             playerController = new PlayerController(unitHandler, gameView);
@@ -73,31 +82,7 @@ namespace _1DV437_NeilArmstrong.Controller
             unitHandler.AddObserver(collisionHandler);
         }
 
-        /*
-         * Clears enemies from list and initiates
-         * new enemy ship to the UnitHandler
-         * and adds them to local list
-         * for updating etc
-         */
-        public void InitiateEnemyWave(int amount)
-        {
-            Sleep();
-            enemyShipList.Clear();
-            for (int i = 1; i < amount; i++)
-            {
-                enemyShipList.Add(new EnemyShip(rand, level));
-            }
-
-            for (int i = 0; i < enemyShipList.Count; i++)
-            {
-                unitHandler.AddUnit(enemyShipList[i], 1);
-            }
-
-            //foreach (EnemyShip es in enemyShipList)
-            //{
-
-            //}
-        }
+       
 
         /*
          * Updates player, enemies, projectiles
@@ -107,7 +92,7 @@ namespace _1DV437_NeilArmstrong.Controller
          * using UnitHandler class
          */
         public override void Update(float totalSeconds)
-        {
+        {          
             time += totalSeconds;
 
             if (gameState == GameState.ShowCurrentWave && time > 2.5f)
@@ -117,12 +102,12 @@ namespace _1DV437_NeilArmstrong.Controller
             }
             else if (gameState == GameState.EnemyWave || gameState == GameState.Bossfight)
             {
+                particleHandler.Update(totalSeconds);
                 explosionHandler.Update(totalSeconds);
                 collisionHandler.Collision();
 
                 for (int i = 0; i < controllerList.Count; i++)
                 {
-
                     if (controllerList[i] is PlayerController)
                     {
                         (controllerList[i] as PlayerController).Update(totalSeconds, playerShip);
@@ -145,13 +130,19 @@ namespace _1DV437_NeilArmstrong.Controller
                             gameState = GameState.GameFinished;
                         }
 
+                        if (playerShip.PlayerDead())
+                        {
+                            gameState = GameState.GameOver;
+                            
+                        }
+
                         if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
                         {                           
                             Sleep();
                             wave += 1;
                             amountOfEnemies += 1;
 
-                            if (amountOfEnemies == 5)
+                            if (amountOfEnemies == 7)
                             {
                                 amountOfEnemies = 1;
                                 level += 1;
@@ -185,14 +176,35 @@ namespace _1DV437_NeilArmstrong.Controller
         {
             Thread.Sleep(1);
         }
+        /*
+        * Clears enemies from list and initiates
+        * new enemy ship to the UnitHandler
+        * and adds them to local list
+        * for updating etc
+        */
+        public void InitiateEnemyWave(int amount)
+        {
+            //ClearShit();
+            //unitHandler.AddUnit(playerShip, 1);
+            Sleep();
+            enemyShipList.Clear();
+            for (int i = 1; i < amount; i++)
+            {
+                enemyShipList.Add(new EnemyShip(rand, level));
+            }
+
+            for (int i = 0; i < enemyShipList.Count; i++)
+            {
+                unitHandler.AddUnit(enemyShipList[i], 1);
+            }
+        }
 
         public void InitiateEnemyBoss()
         {
-            unitHandler.ClearList();
             Sleep();
             enemyShipList.Clear();
 
-            unitHandler.AddUnit(playerShip, 1);
+            //unitHandler.AddUnit(playerShip, 1);
 
             bossList.Add(new Boss(rand));
 
@@ -203,10 +215,18 @@ namespace _1DV437_NeilArmstrong.Controller
 
         }
 
+     
+
+        public void DrawGameOverScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            showStats.ShowGameOver(spriteBatch);
+            spriteBatch.End();
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-
             gameView.Draw(spriteBatch);
             showStats.Draw(spriteBatch);
 

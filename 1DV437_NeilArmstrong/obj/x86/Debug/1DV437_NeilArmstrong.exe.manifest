@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="175104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="178688">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>pbk/CgiIni2Sa0yDW8M/Au49rAc=</dsig:DigestValue>
+        <dsig:DigestValue>Kb5w/iZbLw9FG3kNOeR9uiuEx3A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -174,7 +174,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>1Bv7FuIJpm3fPbXLdsgG/k6SsAI=</dsig:DigestValue>
+      <dsig:DigestValue>F9h5pfjb/zodgXGGfV1xvTUPAqk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\outerspace.xnb" size="1514885">
@@ -337,6 +337,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>At57lNVtxzmX1jUp0KhTNVHLbL4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\spark.png" size="20112">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ApozVKwedSLFBkQxZaLHODnUhJk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\spark.xnb" size="65621">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>vViaWPd9eNyF8+wmoCaMuxjLqo0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="147541">

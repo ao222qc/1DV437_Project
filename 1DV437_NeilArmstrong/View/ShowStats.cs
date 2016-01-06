@@ -16,9 +16,11 @@ namespace _1DV437_NeilArmstrong.View
         Camera camera;
         GameController gameController;
         SpriteFont spriteFont;
+        CollisionHandler collisionHandler;
         
-        public ShowStats(PlayerShip playerShip, Camera camera, GameController gameController)
+        public ShowStats(PlayerShip playerShip, Camera camera, GameController gameController, CollisionHandler collisionHandler)
         {
+            this.collisionHandler = collisionHandler;
             this.playerShip = playerShip;
             this.camera = camera;
             this.gameController = gameController;
@@ -27,6 +29,18 @@ namespace _1DV437_NeilArmstrong.View
         public void LoadContent(ContentManager content)
         {
             spriteFont = content.Load<SpriteFont>("MyFont");
+        }
+
+        public void ShowGameOver(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(270f, 250f), Color.Red);
+            spriteBatch.DrawString(spriteFont, "Moon landing was a hoax", new Vector2(190f, 300f), Color.Red);
+            spriteBatch.DrawString(spriteFont, "Press ENTER to go to menu", new Vector2(180f, 400f), Color.Red);
+        }
+
+        public void ShowGameFinished(SpriteBatch spriteBatch)
+        {
+ 
         }
 
         public void Draw(SpriteBatch spriteBatch)

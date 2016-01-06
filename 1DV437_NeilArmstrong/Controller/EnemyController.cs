@@ -16,6 +16,7 @@ namespace _1DV437_NeilArmstrong.Controller
         UnitHandler unitHandler;
         List<Projectile> projectileList;
         GameView gameView;
+        float time;
 
         public EnemyController(UnitHandler unitHandler, GameView gameView)
         {
@@ -45,6 +46,7 @@ namespace _1DV437_NeilArmstrong.Controller
 
         public void UpdateBoss(float totalSeconds, Boss boss)
         {
+
             if (boss.IsDead == false)
             {
                 if (boss.AbleToShoot(totalSeconds))

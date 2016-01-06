@@ -91,6 +91,8 @@
     <Compile Include="View\GameView.cs" />
     <Compile Include="Observer.cs" />
     <Compile Include="View\MovingBackground.cs" />
+    <Compile Include="View\ParticleAnimation.cs" />
+    <Compile Include="View\ParticleAnimationHandler.cs" />
     <Compile Include="View\ShowStats.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +119,7 @@
     <Content Include="Content\spacebackgroundmenu.png" />
     <Content Include="Content\spacebackgroundnew.png" />
     <Content Include="Content\spaceship.png" />
+    <Content Include="Content\spark.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

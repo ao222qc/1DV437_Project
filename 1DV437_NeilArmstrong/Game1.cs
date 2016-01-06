@@ -9,11 +9,12 @@ using System.Collections.Generic;
 
 namespace _1DV437_NeilArmstrong
 {
-    public enum GameState
+    public enum BaseGameState
     {
         MenuScreen,
         Game,
-        Paused
+        Paused,
+        Over
     };
 
 
@@ -27,9 +28,11 @@ namespace _1DV437_NeilArmstrong
         Camera camera;
         GameController gameController;
         MenuController menuController;
-        public GameState gameState;
+        public BaseGameState gameState;
         bool pauseKeyDown;
         bool pauseKeyDownThisFrame;
+        bool enterKeyDown;
+        bool enterKeyDownThisFrame;
         GameView gameView;
 
         /*
@@ -42,9 +45,10 @@ namespace _1DV437_NeilArmstrong
             graphics.PreferredBackBufferWidth = 700;
             graphics.PreferredBackBufferHeight = 541;
             Content.RootDirectory = "Content";
-            gameState = GameState.MenuScreen;
+            gameState = BaseGameState.MenuScreen;
             IsMouseVisible = true;
             pauseKeyDown = false;
+            enterKeyDown = false;
             IsFixedTimeStep = false;
         }
 
@@ -82,7 +86,7 @@ namespace _1DV437_NeilArmstrong
             menuController = new MenuController(Content, camera, graphics.GraphicsDevice, gameView);
 
             //if something is true
-            if (gameState == GameState.Game)
+            if (gameState == BaseGameState.Game)
             {
                 //int amountOfEnemies = 3;
                 //gameController.InitiateEnemyWave(amountOfEnemies);
@@ -110,13 +114,13 @@ namespace _1DV437_NeilArmstrong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
             if (gameController.GetGameState() == Controller.GameState.GameFinished)
             {
                 //InitiateGame();
             }
-            else if (gameController.GetGameState() == Controller.GameState.GameOver)
+            else if (gameController.GetGameState() == Controller.GameState.GameOver && gameState != BaseGameState.MenuScreen)
             {
+                gameState = BaseGameState.Over;               
                 //u done man
             }
 
@@ -125,28 +129,39 @@ namespace _1DV437_NeilArmstrong
 
             switch (gameState)
             {
-                case GameState.MenuScreen:
+                case BaseGameState.MenuScreen:
                     if (menuController.CheckIfUserWantsToPlay())
                     {
-                        gameState = GameState.Game;
+                        gameState = BaseGameState.Game;
+                        InitiateGame();
                     }
                     break;
-                case GameState.Game:
+                case BaseGameState.Game:
                     pauseKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.P));
                     if (!pauseKeyDown && pauseKeyDownThisFrame)
                     {
-                        gameState = GameState.Paused;
+                        gameState = BaseGameState.Paused;
                     }
                     pauseKeyDown = pauseKeyDownThisFrame;
                     gameController.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
                     break;
-                case GameState.Paused:
+                case BaseGameState.Paused:
                     pauseKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.P));
                     if (!pauseKeyDown && pauseKeyDownThisFrame)
                     {
-                        gameState = GameState.Game;
+                        gameState = BaseGameState.Game;
                     }
                     pauseKeyDown = pauseKeyDownThisFrame;
+                    break;
+
+                case BaseGameState.Over:
+                    enterKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.Enter));
+                    if (!enterKeyDown && enterKeyDownThisFrame)
+                    {
+                        gameState = BaseGameState.MenuScreen;
+                    }
+                    enterKeyDown = enterKeyDownThisFrame;
+                    //gameController.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
                     break;
                 default:
                     break;
@@ -169,14 +184,18 @@ namespace _1DV437_NeilArmstrong
 
             switch (gameState)
             {
-                case GameState.MenuScreen:
+                case BaseGameState.MenuScreen:
                     menuController.Draw(spriteBatch);
                     break;
-                case GameState.Game:
+                case BaseGameState.Game:
                     gameController.Draw(spriteBatch);
                     break;
-                case GameState.Paused:
+                case BaseGameState.Paused:
                     gameController.Draw(spriteBatch);
+                    break;
+                case BaseGameState.Over:
+                    gameController.DrawGameOverScreen(spriteBatch);
+                    //gameController.Draw(spriteBatch);
                     break;
                 default:
                     break;

@@ -17,11 +17,13 @@ namespace _1DV437_NeilArmstrong.Model
         GameView gameView;
         UnitHandler unitHandler;
 
+
+
         public CollisionHandler(GameView gameView, UnitHandler unitHandler)
         {
             this.gameView = gameView;
             this.unitHandler = unitHandler;
-        }
+        }   
 
         public override void UpdateList(List<Unit> unitList)
         {
@@ -35,6 +37,7 @@ namespace _1DV437_NeilArmstrong.Model
                 else if (unitList[i] is Projectile)
                 {
                     projectileList.Add((unitList[unitList.Count - 1] as Projectile));
+                    
                 }
                 else if (unitList[i] is PlayerShip)
                 {
@@ -97,6 +100,7 @@ namespace _1DV437_NeilArmstrong.Model
             if (projectile.ProjectileType == Model.ProjectileType.Player)
             {
 
+
                 for (int i = 0; i < enemyList.Count; i++)
                 {
 
@@ -106,7 +110,6 @@ namespace _1DV437_NeilArmstrong.Model
                     if (pPositionX - projectile.Radius >= enemyPosX - enemyList[i].Radius && pPositionX + projectile.Radius <= enemyPosX + enemyList[i].Radius
                         && pPositionY - projectile.Radius >= enemyPosY - enemyList[i].Radius && pPositionY + projectile.Radius <= enemyPosY + enemyList[i].Radius)
                     {
-
                         enemyList[i].Hit();
                         if (enemyList[i].IsDead)
                         {

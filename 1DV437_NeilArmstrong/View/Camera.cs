@@ -12,10 +12,14 @@ namespace _1DV437_NeilArmstrong.View
         int borderSize = 10;
         int scaleWidth;
         int scaleHeight;
+        int realWidth;
+        int realHeight;
 
      
         public Camera(Viewport graphics)
         {
+            realWidth = graphics.Width;
+            realHeight = graphics.Height;
             scaleWidth = graphics.Width - borderSize * 2;
             scaleHeight = graphics.Height - borderSize * 2;
         }
