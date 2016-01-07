@@ -14,7 +14,8 @@ namespace _1DV437_NeilArmstrong
         MenuScreen,
         Game,
         Paused,
-        Over
+        Over,
+        Finished
     };
 
 
@@ -85,12 +86,7 @@ namespace _1DV437_NeilArmstrong
             
             menuController = new MenuController(Content, camera, graphics.GraphicsDevice, gameView);
 
-            //if something is true
-            if (gameState == BaseGameState.Game)
-            {
-                //int amountOfEnemies = 3;
-                //gameController.InitiateEnemyWave(amountOfEnemies);
-            }
+          
         }
 
         public void InitiateGame()
@@ -114,9 +110,9 @@ namespace _1DV437_NeilArmstrong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (gameController.GetGameState() == Controller.GameState.GameFinished)
+            if (gameController.GetGameState() == Controller.GameState.GameFinished && gameState != BaseGameState.MenuScreen)
             {
-                //InitiateGame();
+                gameState = BaseGameState.Finished;
             }
             else if (gameController.GetGameState() == Controller.GameState.GameOver && gameState != BaseGameState.MenuScreen)
             {
@@ -161,7 +157,14 @@ namespace _1DV437_NeilArmstrong
                         gameState = BaseGameState.MenuScreen;
                     }
                     enterKeyDown = enterKeyDownThisFrame;
-                    //gameController.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    break;
+                case BaseGameState.Finished:
+                    enterKeyDownThisFrame = (Keyboard.GetState().IsKeyDown(Keys.Enter));
+                    if (!enterKeyDown && enterKeyDownThisFrame)
+                    {
+                        gameState = BaseGameState.MenuScreen;
+                    }
+                    enterKeyDown = enterKeyDownThisFrame;
                     break;
                 default:
                     break;
@@ -192,10 +195,15 @@ namespace _1DV437_NeilArmstrong
                     break;
                 case BaseGameState.Paused:
                     gameController.Draw(spriteBatch);
+                    gameController.DrawPausedScreen(spriteBatch);
                     break;
                 case BaseGameState.Over:
+                    gameController.Draw(spriteBatch);
                     gameController.DrawGameOverScreen(spriteBatch);
-                    //gameController.Draw(spriteBatch);
+                    break;
+                case BaseGameState.Finished:
+                    gameController.Draw(spriteBatch);
+                    gameController.DrawGameFinishedScreen(spriteBatch);
                     break;
                 default:
                     break;

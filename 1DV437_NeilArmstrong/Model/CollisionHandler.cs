@@ -1,4 +1,5 @@
 ﻿using _1DV437_NeilArmstrong.View;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,6 @@ namespace _1DV437_NeilArmstrong.Model
         List<Boss> bossList = new List<Boss>();
         GameView gameView;
         UnitHandler unitHandler;
-
-
 
         public CollisionHandler(GameView gameView, UnitHandler unitHandler)
         {
@@ -69,6 +68,10 @@ namespace _1DV437_NeilArmstrong.Model
                         ProjectileHitCollision((unitList[i] as Projectile));
                     }
                 }
+                else if (unitList[i] is EnemyShip)
+                {
+                    EnemyOutOfBounds(unitList[i] as EnemyShip);
+                }
             }
             RemoveUnits();
         }
@@ -92,6 +95,22 @@ namespace _1DV437_NeilArmstrong.Model
             }
         }
 
+        /*
+         * If enemy reaches lowest end of screen
+         * it dies and does 2 damage to player
+         */
+        public void EnemyOutOfBounds(EnemyShip enemyShip)
+        {                     
+            if (enemyShip.GetPosition().Y > 1)
+            {
+                gameView.PlayShipExplodingSound();
+                gameView.DrawOnDeathAnimation(enemyShip.GetPosition());
+                toRemove.Add(enemyShip);
+                playerShipList[0].Hit();
+                playerShipList[0].Hit();
+            }
+        }
+
         public void ProjectileHitCollision(Projectile projectile)
         {
             float pPositionX = projectile.GetPosition().X;
@@ -99,7 +118,6 @@ namespace _1DV437_NeilArmstrong.Model
 
             if (projectile.ProjectileType == Model.ProjectileType.Player)
             {
-
 
                 for (int i = 0; i < enemyList.Count; i++)
                 {
@@ -120,10 +138,10 @@ namespace _1DV437_NeilArmstrong.Model
                         toRemove.Add(projectile);
                         break;
                     }
+                  
+
                 }
 
-                // foreach (Boss boss in bossList)
-                //{
                 for (int i = 0; i < bossList.Count; i++)
                 {
                     float bossPosX = bossList[i].GetPosition().X;

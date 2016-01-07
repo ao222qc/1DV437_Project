@@ -40,12 +40,27 @@ namespace _1DV437_NeilArmstrong.View
 
         public void ShowGameFinished(SpriteBatch spriteBatch)
         {
- 
+            StringBuilder sb = new StringBuilder();
+            sb.Append("CONGRATULATIONS");
+            sb.AppendLine();
+            sb.Append("YOU HAVE DEFEATED THE EVIL FORCES");
+            sb.AppendLine();
+            sb.Append("THE WAY TO THE MOON IS NOW CLEAR");
+            sb.AppendLine();
+            sb.Append("Press ENTER to go to menu");
+
+            spriteBatch.DrawString(spriteFont, sb.ToString(), new Vector2(130f, 250f), Color.Red);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(spriteFont, "HP:" + playerShip.GetHitPoints(), new Vector2(14f, 12f), Color.Red);
+        }
+
+        public void DrawPausedScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(spriteFont, "GAME PAUSED", new Vector2(270f, 250f), Color.Red);
+            spriteBatch.DrawString(spriteFont, "PRESS P TO UNPAUSE", new Vector2(220f, 300f), Color.Red);
         }
 
         public void ShowLevel(SpriteBatch spriteBatch, int wave)

@@ -41,7 +41,7 @@ namespace _1DV437_NeilArmstrong.Model
             position = new Vector2(0.5f, 0.1f);
             randomMovement = (float)rand.NextDouble() - 0.5f;
 
-            gravity = new Vector2(0f, 0.03f);
+            gravity = new Vector2(0f, 0.04f);
 
         }
        

@@ -38,6 +38,7 @@ namespace _1DV437_NeilArmstrong.View
         bool mouseClick;
         bool mouseClickThisFrame;
         Texture2D particle;
+        SpriteFont spriteFont;
 
         public GameView()
         {
@@ -47,6 +48,7 @@ namespace _1DV437_NeilArmstrong.View
         public void Initiate(ContentManager content, Camera camera, GraphicsDevice graphics,
             ExplosionAnimationHandler explosionHandler, ParticleAnimationHandler particleAnimationHandler)
         {
+            spriteFont = content.Load<SpriteFont>("MyFont");
             particle = content.Load<Texture2D>("spark");
             this.particleAnimationHandler = particleAnimationHandler;
             movingBackground = new MovingBackground(content, camera);
@@ -117,7 +119,22 @@ namespace _1DV437_NeilArmstrong.View
             spriteBatch.Draw(menuBackground, camera.GetGameWindow(), Color.White);
             spriteBatch.Draw(playButton, camera.scaleVisualPosition(playButtonLocation),
                     null, Color.White, 0f, new Vector2(playButton.Bounds.Width/2, playButton.Bounds.Height/2),
-                    1f, SpriteEffects.None, 0f);           
+                    1f, SpriteEffects.None, 0f);
+
+            DrawInstructions(spriteBatch);                      
+        }
+
+        public void DrawInstructions(SpriteBatch spriteBatch)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Movement - A/D");
+            sb.AppendLine();
+            sb.Append("Shoot - Space");
+            sb.AppendLine();
+            sb.Append("Pause - P");
+            sb.AppendLine();
+            sb.Append("Quit - Escape");
+            spriteBatch.DrawString(spriteFont, sb.ToString(), new Vector2(270f, 370f), Color.Red);
         }
 
 

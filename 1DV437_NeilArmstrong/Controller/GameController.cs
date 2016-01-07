@@ -44,13 +44,6 @@ namespace _1DV437_NeilArmstrong.Controller
         float time;
         Game1 game1;
 
-        public void ClearShit()
-        {
-            enemyShipList.Clear();
-            unitHandler.ClearList();
-
-        }
-
         public GameController(ContentManager content, Camera camera, GraphicsDevice graphics, GameView gameView, Game1 game1)
         {
             particleHandler = new ParticleAnimationHandler(content);
@@ -82,14 +75,15 @@ namespace _1DV437_NeilArmstrong.Controller
             unitHandler.AddObserver(collisionHandler);
         }
 
-       
 
         /*
-         * Updates player, enemies, projectiles
-         * Checks collision for each frame
-         * Updates animations foreach frame
-         * Keeps track of game progress by
-         * using UnitHandler class
+         * Main update called from Game1
+         * Handles MasterController implementations
+         * and calls Update functions in these.
+         * Keeps track of game progress by asking
+         * model of state of enemies, player etc.
+         * Handles updating certain animations in View
+         * Calls to CollisionHandler for each frame
          */
         public override void Update(float totalSeconds)
         {          
@@ -133,7 +127,12 @@ namespace _1DV437_NeilArmstrong.Controller
                         if (playerShip.PlayerDead())
                         {
                             gameState = GameState.GameOver;
-                            
+                            unitHandler.ClearList();
+                        }
+                        if (gameState == GameState.Bossfight && unitHandler.EnemiesDead())
+                        {
+                            gameState = GameState.GameFinished;
+                            Sleep();
                         }
 
                         if (unitHandler.EnemiesDead() && gameState == GameState.EnemyWave)
@@ -162,6 +161,7 @@ namespace _1DV437_NeilArmstrong.Controller
             }
         }
 
+
         public GameState GetGameState()
         {
             return gameState;
@@ -174,7 +174,7 @@ namespace _1DV437_NeilArmstrong.Controller
          */
         public void Sleep()
         {
-            Thread.Sleep(1);
+            Thread.Sleep(2);
         }
         /*
         * Clears enemies from list and initiates
@@ -184,8 +184,6 @@ namespace _1DV437_NeilArmstrong.Controller
         */
         public void InitiateEnemyWave(int amount)
         {
-            //ClearShit();
-            //unitHandler.AddUnit(playerShip, 1);
             Sleep();
             enemyShipList.Clear();
             for (int i = 1; i < amount; i++)
@@ -199,12 +197,15 @@ namespace _1DV437_NeilArmstrong.Controller
             }
         }
 
+        /*
+         * Adds boss fight to unithandler
+         * the ultimate showdown of
+         * skill and experience
+         * */
         public void InitiateEnemyBoss()
         {
             Sleep();
             enemyShipList.Clear();
-
-            //unitHandler.AddUnit(playerShip, 1);
 
             bossList.Add(new Boss(rand));
 
@@ -216,7 +217,10 @@ namespace _1DV437_NeilArmstrong.Controller
         }
 
      
-
+        /*
+         * Asks view class ShowStats to show
+         * the game over screen.
+         * */
         public void DrawGameOverScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
@@ -224,6 +228,25 @@ namespace _1DV437_NeilArmstrong.Controller
             spriteBatch.End();
         }
 
+        public void DrawPausedScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            showStats.DrawPausedScreen(spriteBatch);
+            gameView.DrawInstructions(spriteBatch);
+            spriteBatch.End();
+        }
+
+        public void DrawGameFinishedScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            showStats.ShowGameFinished(spriteBatch);
+            spriteBatch.End();
+        }
+
+        /*
+         * The "live" draw class
+         * called from Game1
+         * */
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();

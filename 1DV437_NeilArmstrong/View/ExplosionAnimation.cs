@@ -38,6 +38,7 @@ namespace _1DV437_NeilArmstrong.View
             origin = new Vector2(frameWidth / 2.0f, frameHeight / 2);
             this.position = startPosition;
         }
+
         public void Update(float totalSeconds)
         {
             time += totalSeconds;

@@ -21,38 +21,27 @@ namespace _1DV437_NeilArmstrong.View
             toRemove = new List<ParticleAnimation>();
             particleAnimationList = new List<ParticleAnimation>();
         }
-
+        /*
+         * Adds set amount of particles
+         * to list each time called
+         */
         public void AddParticle(Vector2 startPosition)
         {
-            Console.WriteLine(particleAnimationList.Count);
             for (int i = 0; i < MaxParticles; i++)
             {
                 particleAnimationList.Add(new ParticleAnimation(i, startPosition));
             }
         }
-
-        public void ClearParticles()
-        {
-            particleAnimationList.Clear();
-        }
-
-        public void CheckIfDone()
-        {
-            for (int i = 0; i < MaxParticles; i++)
-            {
-                if (particleAnimationList[i].CheckIfParticlesGone())
-                {
-                    //return true;
-                }
-            }
-           // return false;
-        }
-
-        public void Update(float elapsedSeconds) //float elapsedtime
+        /*
+         * Updates each particleAnimation
+         * Automatically handles deletion
+         * of particles outside of screen
+         * */
+        public void Update(float elapsedSeconds) 
         {
             foreach (ParticleAnimation pa in particleAnimationList)
             {
-                pa.Update(elapsedSeconds);//float elapsedtime
+                pa.Update(elapsedSeconds);
 
                 if(pa.GetPosition().X > 1 || pa.GetPosition().X < 0
                     || pa.GetPosition().Y > 1 || pa.GetPosition().Y < 0)
