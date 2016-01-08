@@ -21,7 +21,6 @@ namespace _1DV437_NeilArmstrong.Controller
         GameFinished
     }
 
-
     class GameController : MasterController
     {
         ShowStats showStats;
@@ -109,9 +108,9 @@ namespace _1DV437_NeilArmstrong.Controller
                     }
                     else if (controllerList[i] is EnemyController)
                     {
-                        for (int j = 0; j < enemyShipList.Count; j++)
+                        for (int j = 0; j < controllerList.Count; j++)
                         {
-                            (controllerList[i] as EnemyController).Update(totalSeconds, enemyShipList[j]);
+                            (controllerList[i] as EnemyController).Update(totalSeconds, enemyShipList);
                         }
 
                         for (int k = 0; k < bossList.Count; k++)
@@ -132,6 +131,7 @@ namespace _1DV437_NeilArmstrong.Controller
                         if (gameState == GameState.Bossfight && unitHandler.EnemiesDead())
                         {
                             gameState = GameState.GameFinished;
+                            unitHandler.ClearList();
                             Sleep();
                         }
 
@@ -160,7 +160,6 @@ namespace _1DV437_NeilArmstrong.Controller
                 }
             }
         }
-
 
         public GameState GetGameState()
         {

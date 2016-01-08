@@ -157,7 +157,7 @@ namespace _1DV437_NeilArmstrong.View
                 }
             }
             mouseClickThisFrame = false;
-            //mouseClick = mouseClickThisFrame;
+            mouseClick = mouseClickThisFrame;
             return false;           
         }
 

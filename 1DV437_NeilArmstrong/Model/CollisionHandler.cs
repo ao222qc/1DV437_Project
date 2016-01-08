@@ -61,6 +61,7 @@ namespace _1DV437_NeilArmstrong.Model
                 {
                     if (unitList[i].GetPosition().Y < 0 || unitList[i].GetPosition().Y > 1)
                     {
+                        unitList[i].isDead = true;
                         toRemove.Add(unitList[i] as Projectile);
                     }
                     else
@@ -118,10 +119,8 @@ namespace _1DV437_NeilArmstrong.Model
 
             if (projectile.ProjectileType == Model.ProjectileType.Player)
             {
-
                 for (int i = 0; i < enemyList.Count; i++)
                 {
-
                     float enemyPosX = enemyList[i].GetPosition().X;
                     float enemyPosY = enemyList[i].GetPosition().Y;
 
@@ -138,8 +137,6 @@ namespace _1DV437_NeilArmstrong.Model
                         toRemove.Add(projectile);
                         break;
                     }
-                  
-
                 }
 
                 for (int i = 0; i < bossList.Count; i++)
@@ -166,7 +163,6 @@ namespace _1DV437_NeilArmstrong.Model
             {
                 for (int i = 0; i < playerShipList.Count; i++)
                 {
-
                     float playerPosX = playerShipList[i].GetPosition().X;
                     float playerPosY = playerShipList[i].GetPosition().Y;
 

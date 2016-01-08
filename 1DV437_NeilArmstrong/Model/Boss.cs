@@ -24,7 +24,7 @@ namespace _1DV437_NeilArmstrong.Model
             position = new Vector2(0.5f, 0.1f);
             movement = 0.2f;
             gravity = new Vector2(0f, 0.02f);
-            hitPoints = 10;
+            hitPoints = 15;
             fireDelay = 0.8f;
         }
         public override void Move(float totalSeconds, float direction)

@@ -1,2 +1,200 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_1DV437_NeilArmstrong.Controller.EnemyController" Collapsed="true">
+    <Position X="9.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBBAAAAAAgAAAAAAEAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\EnemyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Controller.GameController" Collapsed="true">
+    <Position X="11.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAIBAIQCgAoAiAAEACCIAgUEAAAQgAAhggACAAAA=</HashCode>
+      <FileName>Controller\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Controller.MasterController" Collapsed="true">
+    <Position X="12.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\MasterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Controller.MenuController" Collapsed="true">
+    <Position X="14" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAgAgAgAAAAAAAAAAAQAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\MenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Controller.PlayerController" Collapsed="true">
+    <Position X="16.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAkAgAAAAAAGAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Game1" Collapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAAgAkAwgUAgAAAAAAgAQAAAgAAAAgAAAAAAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Observer" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Program" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.Boss" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAIgACOAEBAAAAAIAEAACCAAAAAgAAAAAAQAAAAA=</HashCode>
+      <FileName>Model\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.CollisionHandler" Collapsed="true">
+    <Position X="3.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAIAAAAYAgAAIBAAFAAAAEEAAAAAAAABAAgAAAAAA=</HashCode>
+      <FileName>Model\CollisionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.EnemyShip" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJCIgACOgABAAAAAIAEEAKAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Model\EnemyShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.ObservableUnitHandler" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAABAAAAAAABAAAAAAQAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Model\ObservableUnitHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.PlayerShip" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABJAAAACOCAJIAAAEKgEAACAAAAAAAAAAAgBQAAAAA=</HashCode>
+      <FileName>Model\PlayerShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.Projectile" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACeAAABEAAAIAAAACAAAAAAQAAEAAAABAAAA=</HashCode>
+      <FileName>Model\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.Unit" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAOAAAAAAAAAAIAAAABAAAQAAAAAABAAAAAA=</HashCode>
+      <FileName>Model\Unit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.Model.UnitHandler" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgBAAIAAAAAAAACEAQAAAAAAABAAAAAgAAA=</HashCode>
+      <FileName>Model\UnitHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.Camera" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAgAEABAAAAAAAAAAJgAAAgAAAAAICAAAAAABA=</HashCode>
+      <FileName>View\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.ExplosionAnimation" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQBAAAAAAAAAgAAAAEAIAQAAABARAggAABgAQAAAAA=</HashCode>
+      <FileName>View\ExplosionAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.ExplosionAnimationHandler" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAIAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ExplosionAnimationHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.GameView" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABDpAAAZKgQFIiIAACgAIkCAAAAABAIgAAAQEQAwIAA=</HashCode>
+      <FileName>View\GameView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.MovingBackground" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAgAAAAAAIAAAAAAAAQAAAAAAAAAAIAA=</HashCode>
+      <FileName>View\MovingBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.ParticleAnimation" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAIAAGCAAQhCAAAAAIAAAAAAAAAQAAAQAAAAEAAA=</HashCode>
+      <FileName>View\ParticleAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.ParticleAnimationHandler" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAABAAAAAgAAA=</HashCode>
+      <FileName>View\ParticleAnimationHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV437_NeilArmstrong.View.ShowStats" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAIgAAAgAQAiAAACAAAEAAAAAgAAAAAAAAAAQ=</HashCode>
+      <FileName>View\ShowStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="_1DV437_NeilArmstrong.Controller.GameState" Collapsed="true">
+    <Position X="10.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAAAAAAAAAAAAAAAIAAAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Controller\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="_1DV437_NeilArmstrong.BaseGameState" Collapsed="true">
+    <Position X="15.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAYAAAAAAggAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="_1DV437_NeilArmstrong.Model.ProjectileType" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Model\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="_1DV437_NeilArmstrong.View.ExplosionType" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>View\ExplosionAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -24,24 +24,30 @@ namespace _1DV437_NeilArmstrong.Controller
             this.unitHandler = unitHandler;
             this.gameView = gameView;
         }
-        public void Update(float totalSeconds, EnemyShip enemyShip)
+        public void Update(float totalSeconds,List<EnemyShip> enemyShipList)
         {
-            if (enemyShip.IsDead == false)
+            foreach (EnemyShip enemyShip in enemyShipList)
             {
-                if (enemyShip.AbleToShoot(totalSeconds))
+                if (enemyShip.IsDead == false)
                 {
-                    projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
-                    enemyShip.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
-                    gameView.PlayEnemyFireSound();
+                    if (enemyShip.AbleToShoot(totalSeconds))
+                    {
+                        projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
+                        enemyShip.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
+                        gameView.PlayEnemyFireSound();
+                    }
+                    enemyShip.Move(totalSeconds, 0f);
                 }
             }
 
-            for (int i = 0; i < projectileList.Count; i++)
+            for (int i = projectileList.Count - 1; i >= 0; i--)
             {
                 projectileList[i].MoveProjectile(totalSeconds, 0f);
+                if (projectileList[i].isDead)
+                    projectileList.RemoveAt(i);
             }
 
-            enemyShip.Move(totalSeconds, 0f);
+           
         }
 
         public void UpdateBoss(float totalSeconds, Boss boss)

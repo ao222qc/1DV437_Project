@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="179712">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="1DV437_NeilArmstrong.exe" size="180224">
       <assemblyIdentity name="1DV437_NeilArmstrong" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>MqMtxMwDvSdlDSKUTAxgUfZbb1s=</dsig:DigestValue>
+        <dsig:DigestValue>s6ej20t3bvwgvnkYmZhYwrVmo/Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
