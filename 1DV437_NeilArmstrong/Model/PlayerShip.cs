@@ -23,7 +23,7 @@ namespace _1DV437_NeilArmstrong.Model
             position = new Vector2(0.5f, 0.9f);
             speed = 0.8f;
             fireDelay = 0.3f;
-            hitPoints = 10;
+            hitPoints = 50;
         }
 
         public bool PlayerDead()

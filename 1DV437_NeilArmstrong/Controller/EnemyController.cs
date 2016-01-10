@@ -17,14 +17,18 @@ namespace _1DV437_NeilArmstrong.Controller
         List<Projectile> projectileList;
         GameView gameView;
         float time;
+        int tick;
+        EnemyShip ship;
+        bool ableToShoot;
 
         public EnemyController(UnitHandler unitHandler, GameView gameView)
         {
+            ship = new EnemyShip(new Random(), 1);
             projectileList = new List<Projectile>();
             this.unitHandler = unitHandler;
             this.gameView = gameView;
         }
-        public void Update(float totalSeconds,List<EnemyShip> enemyShipList)
+        public void Update(float totalSeconds, List<EnemyShip> enemyShipList)
         {
             foreach (EnemyShip enemyShip in enemyShipList)
             {
@@ -32,13 +36,16 @@ namespace _1DV437_NeilArmstrong.Controller
                 {
                     if (enemyShip.AbleToShoot(totalSeconds))
                     {
+
                         projectileList.Add(new Projectile(enemyShip.GetPosition(), 0f, this));
                         enemyShip.Shoot(unitHandler, projectileList[projectileList.Count - 1]);
                         gameView.PlayEnemyFireSound();
                     }
+                    
                     enemyShip.Move(totalSeconds, 0f);
                 }
             }
+
 
             for (int i = projectileList.Count - 1; i >= 0; i--)
             {
@@ -47,7 +54,7 @@ namespace _1DV437_NeilArmstrong.Controller
                     projectileList.RemoveAt(i);
             }
 
-           
+
         }
 
         public void UpdateBoss(float totalSeconds, Boss boss)

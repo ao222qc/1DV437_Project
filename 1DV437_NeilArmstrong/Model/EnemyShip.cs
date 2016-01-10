@@ -24,17 +24,17 @@ namespace _1DV437_NeilArmstrong.Model
             if (level == 1)
             {                
                 hitPoints = 1;
-                fireDelay = 1.4f;
+                fireDelay = 1.6f;
             }
             else if (level == 2)
             {
                 hitPoints = 2;
-                fireDelay = 1.2f;
+                fireDelay = 1.5f;
             }
             else if (level == 3)
             {
                 hitPoints = 3;
-                fireDelay = 1f;
+                fireDelay = 1.4f;
             }
 
             this.rand = rand;
@@ -85,7 +85,7 @@ namespace _1DV437_NeilArmstrong.Model
         {
             time += totalSeconds;
 
-            fireDelay = (float)rand.NextDouble()  +1.2f;
+            fireDelay = (float)rand.NextDouble() + 1.2f;
 
             if (time >= fireDelay)
             {
